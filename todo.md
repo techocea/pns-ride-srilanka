@@ -1,5 +1,49 @@
 # 🗺️ Travel App & CMS Development Checklist
 
+# Implementation Checklist
+
+## App Routing (`app/`)
+- [ ] **Public Website**
+  - [ ] `app/(app)/` - Public-facing website pages and layout
+- [ ] **Payload Core**
+  - [ ] `app/(payload)/` - Payload admin & API setup (do not modify)
+- [ ] **CMS Application** (`app/(cms)/`)
+  - [ ] `layout.tsx` - Root CMS layout (`<html>`, fonts, styles)
+  - [ ] `cms.css` - Tailwind configuration and design tokens
+  - [ ] `cms/login/page.tsx` - Admin login screen
+  - [ ] `cms/(dashboard)/layout.tsx` - Dashboard shell (auth guard, header, tabs)
+  - [ ] `cms/(dashboard)/page.tsx` - Entry redirect to `/cms/tours`
+  - [ ] `cms/(dashboard)/tours/page.tsx` - Tour listing view
+  - [ ] `cms/(dashboard)/tours/new/page.tsx` - Create tour page
+  - [ ] `cms/(dashboard)/tours/[id]/page.tsx` - Edit tour page
+  - [ ] `cms/(dashboard)/destinations/page.tsx` - Destination management view
+  - [ ] `cms/(dashboard)/gallery/page.tsx` - Media gallery view
+
+## Reusable Components (`components/`)
+- [ ] **CMS Components** (`components/cms/`)
+  - [ ] `CmsHeader.tsx` - Global CMS navigation header
+  - [ ] `CmsTabs.tsx` - Sub-navigation tabs
+  - [ ] `ui/Field.tsx` - Form field wrapper with labels and validation display
+
+## Feature Modules (`features/`)
+- [ ] **Authentication** (`features/auth/`)
+  - [ ] `actions.ts` - Login and session server actions
+  - [ ] `components/LoginForm.tsx` - Interactive login form
+- [ ] **Tours Management** (`features/tours/`)
+  - [ ] `schema.ts` - Zod validation schemas for tour data
+  - [ ] `queries.ts` - Data fetching utilities for tours
+  - [ ] `actions.ts` - Server actions for create, update, and delete operations
+  - [ ] `components/TourTable.tsx` - Tours data table
+  - [ ] `components/RowActions.tsx` - Table row action triggers (edit, delete)
+  - [ ] `components/TourForm.tsx` - Tour create/edit form
+
+## Shared Utilities & Config
+- [ ] `collections/` - Payload collection definitions
+- [ ] `lib/payload.ts` - Local Payload client instance initialization
+- [ ] `lib/auth.ts` - Auth helpers and session management
+- [ ] `payload.config.ts` - Payload CMS global configuration
+
+
 ## 🛠️ Phase 1: Environment & Base Infrastructure
 - [ ] Initialize Next.js 15+ App Router project using TypeScript and Tailwind CSS.
 - [ ] Install Payload CMS core dependencies (`pnpm add payload graphql`).
