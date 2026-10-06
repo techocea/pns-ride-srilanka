@@ -2,6 +2,7 @@ import React from "react";
 import type {Metadata} from "next";
 import {Cormorant, Manrope} from 'next/font/google'
 import '@/app/globals.css'
+import {MotionProvider} from "@/components/cms/MotionProvider";
 
 const cormorant = Cormorant({
     subsets: ['latin'],
@@ -10,12 +11,15 @@ const cormorant = Cormorant({
 })
 const manrope = Manrope({subsets: ['latin'], variable: '--font-manrope'})
 
-export const metadata: Metadata = {title: 'DASHBOARD - PNS RIDE SRI LANKA'}
+export const metadata: Metadata = {title: 'LOGIN - PNS RIDE SRI LANKA'}
 
 export default function CmsRootLayout({children}: { children: React.ReactNode }) {
     return (
-        <html lang="en" className={`${cormorant.variable} ${manrope.variable}`}>
-        <body>{children}</body>
-        </html>
+        <MotionProvider>
+            <html lang="en" className={`${cormorant.variable} ${manrope.variable}`}>
+            <body>
+            {children}</body>
+            </html>
+        </MotionProvider>
     )
 }

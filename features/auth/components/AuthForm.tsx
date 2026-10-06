@@ -1,50 +1,38 @@
 "use client";
 
-import {Label} from "@/components/ui/label";
-import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
+import {useLoginForm} from "@/features/auth/hooks/useLoginForm";
+import {Field, inputClass} from "@/components/ui/field";
 
 export function AuthForm() {
+    const {state, formAction, pending, errors: e} = useLoginForm();
+
     return (
         <div className="w-full">
             <form
-                onSubmit={() => null}
+                action={formAction}
                 className="space-y-4 h-full"
             >
-                <div className="space-y-2">
-                    <Label
-                        className="block text-left text-xs text-muted">
-                        Email
-                    </Label>
-                    <Input
-                        type="email"
-                        autoComplete="username"
-                        defaultValue="admin@pnsridesrilanka.com"
-                        className=""
-                    />
-                </div>
+                <Field label="Email" error={e.email}>
+                    <input name="email" className={inputClass}/>
+                </Field>
 
-                <div className="space-y-2">
-                    <Label className="block text-left text-xs text-muted">
-                        Password
-                    </Label>
-                    <Input
-                        type="password"
-                        autoComplete="current-password"
-                        defaultValue="demo-access"
-                        className=""
-                    />
+                <Field label="Password" error={e.password}>
+                    <input name="password" className={inputClass}/>
+                </Field>
 
-                </div>
+                {state.error && <p className="text-sm text-red-400">{state.error}</p>}
 
                 <Button
                     size={"lg"}
+                    disabled={pending}
                     type="submit"
                     className="w-full text-xs uppercase tracking-widest"
                 >
-                    Login
+                    {pending ? 'Please Wait...' : 'Login'}
                 </Button>
             </form>
+
             <Button variant={"link"} className="text-gold text-xs mt-6">
                 Back to the island
             </Button>

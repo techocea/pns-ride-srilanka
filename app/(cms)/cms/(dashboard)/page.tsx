@@ -1,3 +1,7 @@
-export default function Dashboard(){
-    return <h1>Dashboard Page</h1>
+import {CmsMenuTabs} from "@/components/cms/CmsMenuTabs";
+
+export default function Dashboard() {
+    return (
+        <div></div>
+    )
 }

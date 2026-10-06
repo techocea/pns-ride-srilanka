@@ -22,17 +22,17 @@
 ## Reusable Components (`components/`)
 - [ ] **CMS Components** (`components/cms/`)
   - [ ] `CmsHeader.tsx` - Global CMS navigation header
-  - [ ] `CmsTabs.tsx` - Sub-navigation tabs
+  - [ ] `CmsMenuTabs.tsx` - Sub-navigation tabs
   - [ ] `ui/Field.tsx` - Form field wrapper with labels and validation display
 
 ## Feature Modules (`features/`)
 - [ ] **Authentication** (`features/auth/`)
-  - [ ] `actions.ts` - Login and session server actions
+  - [ ] `tour.actions.ts` - Login and session server actions
   - [ ] `components/AuthForm.tsx` - Interactive login form
 - [ ] **Tours Management** (`features/tours/`)
   - [ ] `schema.ts` - Zod validation schemas for tour data
   - [ ] `queries.ts` - Data fetching utilities for tours
-  - [ ] `actions.ts` - Server actions for create, update, and delete operations
+  - [ ] `tour.actions.ts` - Server actions for create, update, and delete operations
   - [ ] `components/TourTable.tsx` - Tours data table
   - [ ] `components/RowActions.tsx` - Table row action triggers (edit, delete)
   - [ ] `components/TourForm.tsx` - Tour create/edit form

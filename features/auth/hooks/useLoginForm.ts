@@ -4,5 +4,5 @@ import {loginAction} from "@/features/auth/actions/auth.actions";
 
 export function useLoginForm() {
     const [state, formAction, pending] = useActionState<AuthFormState, FormData>(loginAction, {})
-    return { state, formAction, pending }
+    return {state, formAction, pending, errors: state.fieldErrors ?? {}}
 }

@@ -30,6 +30,20 @@ export const Tours: CollectionConfig = {
             },
         },
         {
+            name: 'tourType',
+            type: 'select',
+            required: true,
+            defaultValue: 'cultural',
+            options: [
+                { label: 'Cultural', value: 'cultural' },
+                { label: 'Nature', value: 'nature' },
+                { label: 'Adventure', value: 'adventure' },
+                { label: 'Beach', value: 'beach' },
+                { label: 'Wildlife', value: 'wildlife' },
+                { label: 'Wellness', value: 'wellness' },
+            ],
+        },
+        {
             name: 'status',
             type: 'select',
             defaultValue: 'draft',

@@ -211,6 +211,7 @@ export interface Tour {
   id: string;
   title: string;
   slug: string;
+  tourType: 'cultural' | 'nature' | 'adventure' | 'beach' | 'wildlife' | 'wellness';
   status?: ('draft' | 'published') | null;
   featured?: boolean | null;
   destination: string | Destination;
@@ -422,6 +423,7 @@ export interface DestinationsSelect<T extends boolean = true> {
 export interface ToursSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
+  tourType?: T;
   status?: T;
   featured?: T;
   destination?: T;
