@@ -28,7 +28,7 @@
 ## Feature Modules (`features/`)
 - [ ] **Authentication** (`features/auth/`)
   - [ ] `actions.ts` - Login and session server actions
-  - [ ] `components/LoginForm.tsx` - Interactive login form
+  - [ ] `components/AuthForm.tsx` - Interactive login form
 - [ ] **Tours Management** (`features/tours/`)
   - [ ] `schema.ts` - Zod validation schemas for tour data
   - [ ] `queries.ts` - Data fetching utilities for tours
