@@ -16,7 +16,7 @@ export const metadata: Metadata = {title: 'LOGIN - PNS RIDE SRI LANKA'}
 export default function CmsRootLayout({children}: { children: React.ReactNode }) {
     return (
         <MotionProvider>
-            <html lang="en" className={`${cormorant.variable} ${manrope.variable}`}>
+            <html suppressHydrationWarning={true} lang="en" className={`${cormorant.variable} ${manrope.variable}`}>
             <body>
             {children}</body>
             </html>

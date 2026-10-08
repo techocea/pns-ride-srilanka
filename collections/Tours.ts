@@ -64,12 +64,12 @@ export const Tours: CollectionConfig = {
             ],
         },
         { name: 'description', type: 'textarea', required: true },
-        { name: 'coverImage', type: 'upload', relationTo: 'media', required: true },
+        { name: 'coverImage', type: 'relationship', relationTo: 'media', required: true },
         {
             name: 'images',
             type: 'array',
             label: 'Tour Images',
-            fields: [{ name: 'image', type: 'upload', relationTo: 'media', required: true }],
+            fields: [{ name: 'image', type: 'relationship', relationTo: 'media', required: true }],
         },
         {
             name: 'itinerary',

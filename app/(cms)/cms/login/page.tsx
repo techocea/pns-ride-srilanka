@@ -4,11 +4,10 @@ import {redirect} from "next/navigation";
 import {LockKeyhole} from "lucide-react";
 
 export default async function LoginPage() {
-    // if (await getSession()) redirect("/cms/tours")
-
+    if (await getSession()) redirect("/cms/tours")
 
     return (
-        <div className="fixed inset-0 z-[90]  flex items-center justify-center p-6">
+        <div className="fixed inset-0 z-[90] flex items-center justify-center p-6">
             <div className="w-full max-w-md border border-border bg-accent p-8 sm:p-12 text-center">
                 <LockKeyhole size={26} className="text-gold mx-auto mb-6"/>
                 <p className="text-gold text-[10px] uppercase tracking-[0.3em] mb-4">

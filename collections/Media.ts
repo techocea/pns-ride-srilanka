@@ -1,23 +1,29 @@
-import type { CollectionConfig } from 'payload'
+import type {CollectionConfig} from 'payload'
+import {UTApi} from "uploadthing/server";
 
 export const Media: CollectionConfig = {
     slug: 'media',
+    admin: {useAsTitle: 'name', defaultColumns: ['name', 'alt', 'createdAt']},
     access: {
         read: () => true, // images are public
     },
-    upload: {
-        staticDir: 'media',
-        mimeTypes: ['image/*'],
-        imageSizes: [
-            { name: 'thumbnail', width: 400, height: 300, position: 'centre' },
-            { name: 'card', width: 768, height: 512, position: 'centre' },
+    hooks: {
+        afterDelete: [
+            async ({doc}) => {
+                try {
+                    await new UTApi().deleteFiles(doc.key)
+                } catch (e) {
+                    console.error('UploadThing delete failed', e)
+                }
+            },
         ],
     },
     fields: [
-        {
-            name: 'alt',
-            type: 'text',
-            required: true,
-        },
+        {name: 'id', type: 'text', required: true},
+        {name: 'url', type: 'text', required: true},
+        {name: 'key', type: 'text', required: true, unique: true, index: true},
+        {name: 'name', type: 'text', required: true},
+        {name: 'alt', type: 'text', required: true},
+        {name: 'size', type: 'number'},
     ],
 }

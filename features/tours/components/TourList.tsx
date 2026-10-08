@@ -36,7 +36,7 @@ export default function TourList({tours}: { tours: Tour[] }) {
         <TableBody>
             {tours.map((tour) => {
                 const cover = typeof tour.coverImage === 'object' ? tour.coverImage : null
-                const src = cover?.sizes?.thumbnail?.url ?? cover?.url
+                const src = cover?.url
                 const draft = tour.status === 'draft'
 
                 return (

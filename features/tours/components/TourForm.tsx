@@ -1,18 +1,27 @@
 'use client'
 
 import Link from 'next/link'
-import type {Tour} from '@/payload-types'
-import {useTourForm} from '@/features/tours/hooks/useTourForm'
+import {useState} from "react";
+import {Label} from "@/components/ui/label";
+import {Input} from "@/components/ui/input";
+import {Button} from "@/components/ui/button";
+import type {Media, Tour} from '@/payload-types'
+import {Destination} from "@/features/tours/types";
 import {Field, inputClass} from '@/components/ui/field'
+import {useTourForm} from '@/features/tours/hooks/useTourForm'
 import {TOUR_TYPES} from "@/features/tours/schemas/tour.schema";
+import {ImageUploadZone} from "@/components/ui/ImageUploadZone";
+import type {ImageItem} from "@/features/media/hooks/use-image-items";
 
 type Props = {
-    destinations: { id: string | number; name: string }[]
+    destinations: Destination[]
     tour?: Tour
 }
 
+
 export function TourForm({destinations, tour}: Props) {
     const {state, formAction, pending, errors: e} = useTourForm()
+    const [busy, setBusy] = useState(false)
 
     const destinationId = typeof tour?.destination === 'object' ? tour.destination.id : tour?.destination
     const coverId = typeof tour?.coverImage === 'object' ? tour.coverImage.id : tour?.coverImage
@@ -20,11 +29,15 @@ export function TourForm({destinations, tour}: Props) {
 
     return (
         <form action={formAction} className="mx-auto grid max-w-2xl gap-6">
-            {tour && <input type="hidden" name="id" value={tour.id}/>}
-            {tour && <input type="hidden" name="existingCover" value={coverId}/>}
+            {tour && <Input type="hidden" name="id" value={tour.id}/>}
+            {tour && <Input type="hidden" name="existingCover" value={coverId}/>}
 
             <Field label="Title" error={e.title}>
-                <input name="title" defaultValue={tour?.title} className={inputClass}/>
+                <Input name="title" defaultValue={tour?.title}/>
+            </Field>
+
+            <Field label="Description" error={e.description}>
+                <Input name="description" defaultValue={tour?.description}/>
             </Field>
 
 
@@ -49,20 +62,19 @@ export function TourForm({destinations, tour}: Props) {
 
             <div className="grid grid-cols-2 gap-6">
                 <Field label="Duration (days)" error={e.durationDays}>
-                    <input name="durationDays" type="number" min={1} defaultValue={tour?.durationDays}
-                           className={inputClass}/>
+                    <Input name="durationDays" type="number" min={1} defaultValue={tour?.durationDays}
+                    />
                 </Field>
                 <Field label="Price (USD)" error={e.price}>
-                    <input name="price" type="number" min={0} defaultValue={tour?.price} className={inputClass}/>
+                    <Input name="price" type="number" min={0} defaultValue={tour?.price}/>
                 </Field>
             </div>
 
 
-
-
-            <Field label="Cover image" error={e.coverImage}>
-                <input name="coverImage" type="file" accept="image/*"
-                       className={`${inputClass} file:mr-4 file:border-0 file:bg-gold file:px-3 file:py-1 file:text-xs file:text-black`}/>
+            <Field label="Media Files" error={e.coverImage}>
+                <span className="text-[10px] uppercase tracking-[0.2em] text-muted">Images (first is the cover)</span>
+                <ImageUploadZone name="images" maxFiles={8} initialImages={toInitialImages(tour)}
+                                 onBusyChange={setBusy}/>
             </Field>
 
             <div className="flex items-center gap-8">
@@ -70,22 +82,24 @@ export function TourForm({destinations, tour}: Props) {
                     <option value="published">Published</option>
                     <option value="draft">Draft</option>
                 </select>
-                <label className="flex items-center gap-3 text-sm">
-                    <input type="checkbox" name="featured" defaultChecked={tour?.featured ?? false}
+                <Label className="flex items-center gap-3 text-sm">
+                    <Input type="checkbox" name="featured" defaultChecked={tour?.featured ?? false}
                            className="size-4 accent-[#c99a2e]"/>
                     Featured
-                </label>
+                </Label>
             </div>
 
             {state.error && <p className="text-sm text-red-400">{state.error}</p>}
 
             <div className="flex gap-3">
-                <button
-                    disabled={pending}
-                    className="bg-gold px-8 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-black disabled:opacity-50"
+                <Button
+                    size={"lg"}
+                    type="submit"
+                    disabled={pending || busy}
+                    className="uppercase"
                 >
                     {pending ? 'Saving...' : 'Save package'}
-                </button>
+                </Button>
                 <Link href="/cms/tours"
                       className="border border-line px-8 py-3 text-xs uppercase tracking-[0.2em] text-muted hover:text-white">
                     Cancel
@@ -93,4 +107,12 @@ export function TourForm({destinations, tour}: Props) {
             </div>
         </form>
     )
+}
+
+function toInitialImages(tour?: Tour): ImageItem[] {
+    if (!tour) return []
+    const media = [tour.coverImage, ...(tour.images?.map((i) => i.image) ?? [])]
+    return media
+        .filter((m): m is Media => typeof m === 'object')
+        .map((m) => ({key: m.id, src: m.url, status: 'existing', mediaId: m.id}))
 }
