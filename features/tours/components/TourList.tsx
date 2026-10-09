@@ -2,7 +2,6 @@ import {Tour} from "@/payload-types";
 import {
     Table,
     TableBody,
-    TableCaption,
     TableCell,
     TableHead,
     TableHeader,
@@ -44,7 +43,7 @@ export default function TourList({tours}: { tours: Tour[] }) {
                         <TableCell className={`${cols} h-[78px] border-t border-line ${draft ? 'opacity-50' : ''}`}>
                             <div className="flex items-center gap-4">
                                 {src ? (
-                                    <Image src={src} alt={cover?.alt ?? tour.title} width={54} height={64}
+                                    <Image src={src} alt={cover?.alt ?? tour.title} width={54} height={64} unoptimized
                                            className="h-[42px] w-[64px] object-cover"/>
                                 ) : (
                                     <div className="h-[42px] w-[54px] bg-surface"/>

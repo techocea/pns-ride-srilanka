@@ -19,7 +19,6 @@ export const Media: CollectionConfig = {
         ],
     },
     fields: [
-        {name: 'id', type: 'text', required: true},
         {name: 'url', type: 'text', required: true},
         {name: 'key', type: 'text', required: true, unique: true, index: true},
         {name: 'name', type: 'text', required: true},

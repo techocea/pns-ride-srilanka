@@ -3,7 +3,6 @@
 import { useTransition } from 'react'
 import {deleteTourAction, toggleVisibilityAction} from "@/features/tours/actions/tour.actions";
 
-
 export function useTourRowActions(id: string, title: string) {
     const [pending, startTransition] = useTransition()
 

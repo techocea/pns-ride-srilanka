@@ -169,13 +169,23 @@ export interface Media {
  */
 export interface Destination {
   id: string;
-  name: string;
+  title: string;
   /**
    * Auto-generated from name if left empty
    */
   slug: string;
+  status?: ('draft' | 'published') | null;
   province: string;
   description?: string | null;
+  /**
+   * Short points shown as boxes, e.g. Tea estates, Waterfalls
+   */
+  highlights?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
   coverImage: string | Media;
   updatedAt: string;
   createdAt: string;
@@ -343,7 +353,6 @@ export interface UsersSelect<T extends boolean = true> {
  * via the `definition` "media_select".
  */
 export interface MediaSelect<T extends boolean = true> {
-  id?: T;
   url?: T;
   key?: T;
   name?: T;
@@ -357,10 +366,17 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "destinations_select".
  */
 export interface DestinationsSelect<T extends boolean = true> {
-  name?: T;
+  title?: T;
   slug?: T;
+  status?: T;
   province?: T;
   description?: T;
+  highlights?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
   coverImage?: T;
   updatedAt?: T;
   createdAt?: T;

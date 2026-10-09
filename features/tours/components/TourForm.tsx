@@ -2,16 +2,24 @@
 
 import Link from 'next/link'
 import {useState} from "react";
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import type {Media, Tour} from '@/payload-types'
-import {Destination} from "@/features/tours/types";
 import {Field, inputClass} from '@/components/ui/field'
 import {useTourForm} from '@/features/tours/hooks/useTourForm'
 import {TOUR_TYPES} from "@/features/tours/schemas/tour.schema";
 import {ImageUploadZone} from "@/components/ui/ImageUploadZone";
 import type {ImageItem} from "@/features/media/hooks/use-image-items";
+import type {Destination} from "@/features/destinations/types";
 
 type Props = {
     destinations: Destination[]
@@ -26,11 +34,12 @@ export function TourForm({destinations, tour}: Props) {
     const destinationId = typeof tour?.destination === 'object' ? tour.destination.id : tour?.destination
     const coverId = typeof tour?.coverImage === 'object' ? tour.coverImage.id : tour?.coverImage
 
+    const destinationItems = destinations.map((d) => ({label: d.title, value: d.id}))
 
     return (
         <form action={formAction} className="mx-auto grid max-w-2xl gap-6">
-            {tour && <Input type="hidden" name="id" value={tour.id}/>}
-            {tour && <Input type="hidden" name="existingCover" value={coverId}/>}
+            {tour && <input type="hidden" name="id" value={tour.id}/>}
+            {tour && <input type="hidden" name="existingCover" value={coverId}/>}
 
             <Field label="Title" error={e.title}>
                 <Input name="title" defaultValue={tour?.title}/>
@@ -43,20 +52,45 @@ export function TourForm({destinations, tour}: Props) {
 
             <div className="grid grid-cols-2 gap-6">
                 <Field label="Type" error={e.tourType}>
-                    <select name="tourType" defaultValue={tour?.tourType ?? 'cultural'} className={inputClass}>
-                        {TOUR_TYPES.map((t) => (
-                            <option key={t.value} value={t.value}>{t.label}</option>
-                        ))}
-                    </select>
+                    <Select
+                        name="tourType"
+                        items={destinationItems}
+                        defaultValue={tour?.tourType ?? ""}
+                    >
+                        <SelectTrigger className="w-full" size={"lg"}>
+                            <SelectValue placeholder="Select tour type"/>
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectGroup>
+                                {TOUR_TYPES.map((item) => (
+                                    <SelectItem key={item.value} value={item.value}>
+                                        {item.label}
+                                    </SelectItem>
+                                ))}
+                            </SelectGroup>
+                        </SelectContent>
+                    </Select>
                 </Field>
 
                 <Field label="Destination" error={e.destination}>
-                    <select name="destination" defaultValue={destinationId ?? ''} className={inputClass}>
-                        <option value="">Select destination</option>
-                        {destinations.map((d) => (
-                            <option key={d.id} value={d.id}>{d.name}</option>
-                        ))}
-                    </select>
+                    <Select
+                        name="destination"
+                        items={destinationItems}
+                        defaultValue={destinationId ? String(destinationId) : null}
+                    >
+                        <SelectTrigger className="w-full" size={"lg"}>
+                            <SelectValue placeholder="Select destination"/>
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectGroup>
+                                {destinationItems.map((item) => (
+                                    <SelectItem key={item.value} value={item.value}>
+                                        {item.label}
+                                    </SelectItem>
+                                ))}
+                            </SelectGroup>
+                        </SelectContent>
+                    </Select>
                 </Field>
             </div>
 
@@ -100,10 +134,14 @@ export function TourForm({destinations, tour}: Props) {
                 >
                     {pending ? 'Saving...' : 'Save package'}
                 </Button>
-                <Link href="/cms/tours"
-                      className="border border-line px-8 py-3 text-xs uppercase tracking-[0.2em] text-muted hover:text-white">
-                    Cancel
-                </Link>
+                <Button
+                    size={"lg"}
+                    variant={"outline"}
+                    className="uppercase"
+                >
+                    <Link href="/cms/tours"> Cancel
+                    </Link>
+                </Button>
             </div>
         </form>
     )

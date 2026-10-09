@@ -3,7 +3,7 @@ import {requireUser} from "@/features/auth/services/auth.service";
 import {SaveArgs} from "@/features/tours/types";
 import {resolveImageIds} from "@/features/media/services/media.service";
 
-export async function listTours() {
+export async function getTours() {
     const {payload, user} = await requireUser()
     return payload.find({
         collection: "tours",
@@ -47,7 +47,17 @@ export async function removeTour(id: string) {
 
 export async function saveTour({ id, input, images }: SaveArgs) {
     const {payload, user} = await requireUser()
+    // const isId = (v: unknown) => typeof v === 'string' && /^[a-f0-9]{24}$/i.test(v)
+
     const ids = await resolveImageIds(images, input.title)
+
+    // console.log('SAVE DEBUG', {
+    //     destination: input.destination,
+    //     destinationOk: isId(input.destination),
+    //     mediaIds: ids,
+    //     mediaOk: ids.map(isId),
+    // })
+
     const [coverImage, ...rest] = ids
 
     if (!coverImage) throw new Error('Cover image is required')

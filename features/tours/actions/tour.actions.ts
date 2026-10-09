@@ -25,7 +25,6 @@ export async function saveTourAction(_prev: AuthFormState, formData: FormData) {
         destination: String(formData.get('destination') ?? ''),
         durationDays: String(formData.get('durationDays') ?? ''),
         price: String(formData.get('price') ?? ''),
-        summary: String(formData.get('summary') ?? ''),
         status: String(formData.get('status') ?? ''),
         featured: formData.get('featured') === 'on',
     })
@@ -38,18 +37,19 @@ export async function saveTourAction(_prev: AuthFormState, formData: FormData) {
 
     const images = imageEntriesSchema.safeParse(JSON.parse(String(formData.get('images') || '[]')))
     if (!images.success || images.data.length === 0) {
-        return { error: 'Please fix the highlighted fields', fieldErrors: { images: 'Add at least one image' } }
+        return {error: 'Please fix the highlighted fields', fieldErrors: {images: 'Add at least one image'}}
     }
-
 
     try {
         await saveTour({
-            id: String(formData.get('id') ?? '') || undefined,
             input: parsed.data,
             images: images.data,
         })
     } catch (e) {
-        return {error: e instanceof Error ? e.message : 'Something went wrong'}
+        console.error('saveTour failed:', e)
+        const data = (e as { data?: unknown })?.data
+        if (data) console.error(JSON.stringify(data, null, 2))
+        return { error: e instanceof Error ? e.message : 'Something went wrong' }
     }
 
     revalidatePath('/cms/tours')

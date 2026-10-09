@@ -18,7 +18,8 @@ export default function CmsRootLayout({children}: { children: React.ReactNode })
         <MotionProvider>
             <html suppressHydrationWarning={true} lang="en" className={`${cormorant.variable} ${manrope.variable}`}>
             <body>
-            {children}</body>
+            {children}
+            </body>
             </html>
         </MotionProvider>
     )

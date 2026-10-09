@@ -16,11 +16,11 @@ export function AuthForm() {
                 className="space-y-4 h-full text-left"
             >
                 <Field label="Email" error={e.email}>
-                    <Input name="email"/>
+                    <Input name="email" placeholder={"admin@example.com"}/>
                 </Field>
 
                 <Field label="Password" error={e.password}>
-                    <Input name="password"/>
+                    <Input name="password" placeholder={"********"}/>
                 </Field>
 
                 {state.error && <p className="text-sm text-red-400">{state.error}</p>}

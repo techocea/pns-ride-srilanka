@@ -1,6 +1,6 @@
-import {ArrowLeft} from "lucide-react";
 import Link from "next/link";
 import {Button} from "@/components/ui/button";
+import {CMS_MENU} from "@/lib/constants";
 
 export function CmsHeader() {
     return (
@@ -11,10 +11,15 @@ export function CmsHeader() {
         </span>
             </div>
 
-            <div className="flex items-center gap-6">
-        <span className="flex items-center gap-2 text-xs text-muted">
-          <span className="size-2.5 bg-gold"/> Admin Mode
-        </span>
+            <nav className="flex gap-8">
+                {CMS_MENU.map((item, idx) => (
+                    <Link key={idx} href={item.href} className="flex items-center gap-2 text-sm hover:text-primary transition-colors">
+                        <item.icon size={20}/>
+                        {item.label}
+                    </Link>
+                ))}
+            </nav>
+            <div>
                 <form>
                     <Button
                         variant="outline"
