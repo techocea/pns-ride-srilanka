@@ -79,20 +79,22 @@ export function ImageUploadZone({name, initialImages, maxFiles = IMAGE_RULES.max
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
                 {items.map((item, index) => (
                     <div key={item.key} className="relative border border-line bg-surface">
-                        {/* plain <img>: blob previews can't go through next/image */}
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <Image
-                            width={400}
-                            height={400}
-                            src={item.src}
-                            alt={`Image ${index + 1}`}
-                            className={`h-24 w-full object-cover ${item.status === 'uploading' ? 'opacity-40' : ''}`}
-                        />
+                        <div className="relative h-24 w-full overflow-hidden bg-ink">
+                            <Image
+                                src={item.src}
+                                alt={`Image ${index + 1}`}
+                                fill
+                                unoptimized
+                                loading={"eager"}
+                                sizes="(min-width: 640px) 25vw, 50vw"
+                                className={`object-cover ${item.status === 'uploading' ? 'opacity-40' : ''}`}
+                            />
 
-                        {item.status === 'uploading' && (
-                            <Loader2 size={18}
-                                     className="absolute left-1/2 top-9 -translate-x-1/2 animate-spin text-gold"/>
-                        )}
+                            {item.status === 'uploading' && (
+                                <Loader2 size={18}
+                                         className="absolute left-1/2 top-9 -translate-x-1/2 animate-spin text-gold"/>
+                            )}
+                        </div>
 
                         <Button
                             type="button"

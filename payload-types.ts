@@ -171,7 +171,7 @@ export interface Destination {
   id: string;
   title: string;
   /**
-   * Auto-generated from name if left empty
+   * Generated from the title
    */
   slug: string;
   status?: ('draft' | 'published') | null;
@@ -197,6 +197,9 @@ export interface Destination {
 export interface Tour {
   id: string;
   title: string;
+  /**
+   * Generated from the title
+   */
   slug: string;
   tourType: 'cultural' | 'nature' | 'adventure' | 'beach' | 'wildlife' | 'wellness';
   status?: ('draft' | 'published') | null;

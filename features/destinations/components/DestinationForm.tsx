@@ -1,11 +1,11 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
-import type { Destination, Media } from '@/payload-types'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Field, inputClass } from '@/components/ui/field'
+import {useState} from 'react'
+import type {Destination, Media} from '@/payload-types'
+import {Button} from '@/components/ui/button'
+import {Input} from '@/components/ui/input'
+import {Field, inputClass} from '@/components/ui/field'
 import {
     Select,
     SelectContent,
@@ -14,20 +14,20 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select'
-import { ImageUploadZone } from '@/components/ui/ImageUploadZone'
-import type { ImageItem } from '@/features/media/hooks/use-image-items'
-import { useDestinationForm } from '../hooks/useDestinationForm'
-import { HIGHLIGHT_LIMITS, parseHighlights } from '../utils/highlights'
+import {ImageUploadZone} from '@/components/ui/ImageUploadZone'
+import type {ImageItem} from '@/features/media/hooks/use-image-items'
+import {useDestinationForm} from '../hooks/useDestinationForm'
+import {HIGHLIGHT_LIMITS, parseHighlights} from '../utils/highlights'
 import {DestinationHighlights} from "@/features/destinations/components/DestinationHighlights";
 
 
 const statusItems = [
-    { label: 'Published', value: 'published' },
-    { label: 'Draft', value: 'draft' },
+    {label: 'Published', value: 'published'},
+    {label: 'Draft', value: 'draft'},
 ]
 
-export function DestinationForm({ destination }: { destination?: Destination }) {
-    const { state, handleSubmit, pending, errors: e } = useDestinationForm()
+export function DestinationForm({destination}: { destination?: Destination }) {
+    const {state, handleSubmit, pending, errors: e} = useDestinationForm()
     const [busy, setBusy] = useState(false)
     const [highlights, setHighlights] = useState(
         destination?.highlights?.map((h) => h.text).join(', ') ?? '',
@@ -37,14 +37,14 @@ export function DestinationForm({ destination }: { destination?: Destination }) 
 
     return (
         <form onSubmit={handleSubmit} className="mx-auto grid max-w-2xl gap-6">
-            {destination && <input type="hidden" name="id" value={destination.id} />}
+            {destination && <input type="hidden" name="id" value={destination.id}/>}
 
             <Field label="Title" error={e.title}>
-                <Input name="title" defaultValue={destination?.title} />
+                <Input name="title" defaultValue={destination?.title}/>
             </Field>
 
             <Field label="Province" error={e.province}>
-                <Input name="province" defaultValue={destination?.province} placeholder="Central Province" />
+                <Input name="province" defaultValue={destination?.province} placeholder="Central Province"/>
             </Field>
 
             <Field label="Description" error={e.description}>
@@ -68,13 +68,13 @@ export function DestinationForm({ destination }: { destination?: Destination }) 
                 <p className="text-[10px] text-muted">
                     {parsed.length}/{HIGHLIGHT_LIMITS.maxItems} · up to {HIGHLIGHT_LIMITS.maxLength} characters each
                 </p>
-                <DestinationHighlights items={parsed} />
+                <DestinationHighlights items={parsed}/>
             </div>
 
             <Field label="Status" error={e.status}>
                 <Select name="status" items={statusItems} defaultValue={destination?.status ?? 'published'}>
                     <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Select status" />
+                        <SelectValue placeholder="Select status"/>
                     </SelectTrigger>
                     <SelectContent>
                         <SelectGroup>
@@ -121,5 +121,5 @@ function toInitialImages(destination?: Destination): ImageItem[] {
     const cover = destination?.coverImage
     if (!cover || typeof cover !== 'object') return []
     const m = cover as Media
-    return [{ key: m.id, src: m.url, status: 'existing', mediaId: m.id }]
+    return [{key: m.id, src: m.url, status: 'existing', mediaId: m.id}]
 }

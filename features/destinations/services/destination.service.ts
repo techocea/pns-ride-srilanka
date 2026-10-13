@@ -1,11 +1,11 @@
 import "server-only"
 import {requireUser} from "@/features/auth/services/auth.service";
 import {resolveImageIds} from "@/features/media/services/media.service";
-import type {Destination,SaveArgs} from "@/features/destinations/types";
+import type {Destination, SaveArgs} from "@/features/destinations/types";
 
 export async function getDestinations() {
     const {payload, user} = await requireUser()
-    const { docs } = await payload.find({
+    const {docs} = await payload.find({
         collection: 'destinations',
         limit: 100,
         depth: 1,
@@ -17,9 +17,16 @@ export async function getDestinations() {
     return docs
 }
 
+export async function findDestination(id: string) {
+    const {payload, user} = await requireUser()
+    return payload
+        .findByID({collection: 'destinations', id, depth: 1, user, overrideAccess: false})
+        .catch(() => null)
+}
+
 export async function getDestinationOptions(): Promise<Destination[]> {
-    const { payload, user } = await requireUser()
-    const { docs } = await payload.find({
+    const {payload, user} = await requireUser()
+    const {docs} = await payload.find({
         collection: 'destinations',
         depth: 1,
         limit: 100,
@@ -27,7 +34,7 @@ export async function getDestinationOptions(): Promise<Destination[]> {
         user,
         overrideAccess: false,
     })
-    return docs.map((d) => ({ id: String(d.id), title: d.title }))
+    return docs.map((d) => ({id: String(d.id), title: d.title}))
 }
 
 export async function getDestinationStats() {

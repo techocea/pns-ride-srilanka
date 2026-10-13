@@ -1,4 +1,5 @@
 import type {CollectionConfig} from 'payload'
+import {autoSlug} from "@/collections/hooks/auto-slug";
 
 export const Destinations: CollectionConfig = {
     slug: 'destinations',
@@ -17,17 +18,12 @@ export const Destinations: CollectionConfig = {
             required: true,
             unique: true,
             index: true,
-            admin: {position: 'sidebar', description: 'Auto-generated from name if left empty'},
-            hooks: {
-                beforeValidate: [
-                    ({value, data}) => {
-                        const source = value || data?.title
-                        return source
-                            ? String(source).toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
-                            : value
-                    },
-                ],
+            admin: {
+                position: 'sidebar',
+                readOnly: true,
+                description: 'Generated from the title',
             },
+            hooks: { beforeValidate: [autoSlug('title')] },
         },
         {
             name: 'status',

@@ -15,6 +15,13 @@ export async function getTours() {
     })
 }
 
+export async function findTour(id: string) {
+    const {payload, user} = await requireUser()
+    return payload
+        .findByID({collection: 'tours', id, depth: 1, user, overrideAccess: false})
+        .catch(() => null)
+}
+
 export async function getTourStats() {
     const {payload, user} = await requireUser()
     const [total, featured] = await Promise.all([
@@ -45,7 +52,7 @@ export async function removeTour(id: string) {
     await payload.delete({collection: 'tours', id, user, overrideAccess: false})
 }
 
-export async function saveTour({ id, input, images }: SaveArgs) {
+export async function saveTour({id, input, images}: SaveArgs) {
     const {payload, user} = await requireUser()
     // const isId = (v: unknown) => typeof v === 'string' && /^[a-f0-9]{24}$/i.test(v)
 
@@ -62,7 +69,7 @@ export async function saveTour({ id, input, images }: SaveArgs) {
 
     if (!coverImage) throw new Error('Cover image is required')
 
-    const data = { ...input, coverImage, images: rest.map((image) => ({ image })) }
+    const data = {...input, coverImage, images: rest.map((image) => ({image}))}
 
     return id
         ? payload.update({collection: 'tours', id, data, user, overrideAccess: false})

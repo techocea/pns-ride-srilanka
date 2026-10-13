@@ -43,6 +43,7 @@ export async function saveDestinationAction(_prev: AuthFormState, formData: Form
 
     try {
         await saveDestination({
+            id: String(formData.get('id') ?? '') || undefined,
             input: parsed.data,
             images: images.data,
         })

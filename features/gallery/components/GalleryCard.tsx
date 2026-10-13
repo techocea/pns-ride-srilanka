@@ -23,6 +23,7 @@ export function GalleryCard({ item }: { item: Gallery }) {
                         alt={value || 'Gallery image'}
                         fill
                         unoptimized
+                        loading={"lazy"}
                         sizes="(min-width: 768px) 25vw, 50vw"
                         className="object-cover"
                     />

@@ -5,7 +5,6 @@ import {useRef} from 'react'
 import {motion, useReducedMotion, useScroll, useTransform} from 'motion/react'
 import type {Destination} from '@/payload-types'
 import {RowActions} from './RowActions'
-import {DestinationHighlights} from "@/features/destinations/components/DestinationHighlights";
 
 type Props = { destination: Destination; index: number }
 
@@ -46,7 +45,7 @@ export function DestinationCard({destination: dest, index}: Props) {
                                 alt={cover.alt ?? dest.title}
                                 fill
                                 unoptimized
-                                loading={"lazy"}
+                                loading={"eager"}
                                 sizes="(min-width: 1280px) 400px, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                                 className="object-cover"
                             />

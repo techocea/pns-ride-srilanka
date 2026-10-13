@@ -20,6 +20,8 @@ import {TOUR_TYPES} from "@/features/tours/schemas/tour.schema";
 import {ImageUploadZone} from "@/components/ui/ImageUploadZone";
 import type {ImageItem} from "@/features/media/hooks/use-image-items";
 import type {Destination} from "@/features/destinations/types";
+import {ItineraryEditor} from "@/features/tours/components/ItineraryEditor";
+import {type ItineraryRow} from "@/features/tours/hooks/useItineraryRows";
 
 type Props = {
     destinations: Destination[]
@@ -54,7 +56,7 @@ export function TourForm({destinations, tour}: Props) {
                 <Field label="Type" error={e.tourType}>
                     <Select
                         name="tourType"
-                        items={destinationItems}
+                        // items={destinationItems}
                         defaultValue={tour?.tourType ?? ""}
                     >
                         <SelectTrigger className="w-full" size={"lg"}>
@@ -76,7 +78,7 @@ export function TourForm({destinations, tour}: Props) {
                     <Select
                         name="destination"
                         items={destinationItems}
-                        defaultValue={destinationId ? String(destinationId) : null}
+                        defaultValue={destinationId ?? ''}
                     >
                         <SelectTrigger className="w-full" size={"lg"}>
                             <SelectValue placeholder="Select destination"/>
@@ -125,6 +127,8 @@ export function TourForm({destinations, tour}: Props) {
 
             {state.error && <p className="text-sm text-red-400">{state.error}</p>}
 
+            <ItineraryEditor name="itinerary" initialRows={toItineraryRows(tour)} error={e.itinerary}/>
+
             <div className="flex gap-3">
                 <Button
                     size={"lg"}
@@ -153,4 +157,12 @@ function toInitialImages(tour?: Tour): ImageItem[] {
     return media
         .filter((m): m is Media => typeof m === 'object')
         .map((m) => ({key: m.id, src: m.url, status: 'existing', mediaId: m.id}))
+}
+
+function toItineraryRows(tour?: Tour): ItineraryRow[] {
+    return (tour?.itinerary ?? []).map((row) => ({
+        key: row.id ?? crypto.randomUUID(),
+        title: row.title,
+        details: row.details ?? '',
+    }))
 }
