@@ -16,3 +16,5 @@ const existingImage = z.object({ kind: z.literal('existing'), id: z.string().min
 export const imageEntriesSchema = z.array(z.discriminatedUnion('kind', [uploadedImage, existingImage]))
 
 export type ImageEntry = z.infer<typeof imageEntriesSchema>[number]
+
+export type NewImageEntry = Extract<ImageEntry, { kind: 'new' }>

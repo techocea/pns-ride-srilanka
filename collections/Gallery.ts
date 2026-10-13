@@ -1,15 +1,14 @@
-import type { CollectionConfig } from 'payload'
+import type {CollectionConfig} from 'payload'
 
 export const Gallery: CollectionConfig = {
     slug: 'gallery',
-    admin: { useAsTitle: 'title' },
-    access: {
-        read: () => true,
-    },
+    admin: {useAsTitle: 'caption', defaultColumns: ['caption', 'image', 'createdAt']},
+    access: {read: () => true},
     fields: [
-        { name: 'title', type: 'text', required: true },
-        { name: 'image', type: 'upload', relationTo: 'media', required: true },
-        { name: 'caption', type: 'text' },
-        { name: 'destination', type: 'relationship', relationTo: 'destinations' },
-    ],
+        {name: 'image', type: 'relationship', relationTo: 'media', required: true},
+        {
+            name: 'caption', type: 'text', required: true,
+            maxLength: 120,
+            admin: {description: 'Shown under the image and used as its alt text'},
+        }],
 }

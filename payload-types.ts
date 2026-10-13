@@ -232,10 +232,11 @@ export interface Tour {
  */
 export interface Gallery {
   id: string;
-  title: string;
   image: string | Media;
-  caption?: string | null;
-  destination?: (string | null) | Destination;
+  /**
+   * Shown under the image and used as its alt text
+   */
+  caption: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -418,10 +419,8 @@ export interface ToursSelect<T extends boolean = true> {
  * via the `definition` "gallery_select".
  */
 export interface GallerySelect<T extends boolean = true> {
-  title?: T;
   image?: T;
   caption?: T;
-  destination?: T;
   updatedAt?: T;
   createdAt?: T;
 }
