@@ -8,6 +8,7 @@ import {useCaptionEditor} from "@/features/gallery/hooks/useCaptionEditor";
 import {useDeleteGalleryItem} from "@/features/gallery/hooks/useDeleteGalleryItems";
 import {Button} from "@/components/ui/button";
 import {Label} from "@/components/ui/label";
+import {uploadthingLoader} from "@/features/gallery/utils/uploadthing-loader";
 
 export function GalleryCard({ item }: { item: Gallery }) {
     const image = typeof item.image === 'object' ? item.image : null
@@ -23,7 +24,7 @@ export function GalleryCard({ item }: { item: Gallery }) {
                         alt={value || 'Gallery image'}
                         fill
                         unoptimized
-                        loading={"lazy"}
+                        loader={uploadthingLoader}
                         sizes="(min-width: 768px) 25vw, 50vw"
                         className="object-cover"
                     />

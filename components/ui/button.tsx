@@ -10,10 +10,12 @@ const buttonVariants = cva(
         default: "bg-primary text-black hover:bg-primary/80",
         outline:
           "border-primary bg-background hover:bg-muted text-primary hover:text-secondary hover:border-none aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50",
+        "outline-gray":
+          "border border-border hover:bg-muted-foreground/50 text-muted-foreground hover:text-white transition-colors",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
         ghost:
-          "text-primary hover:underline aria-expanded:bg-none aria-expanded:text-foreground",
+          "text-primary hover:underline aria-expanded:bg-none aria-expanded:text-white",
         destructive:
           "bg-destructive/90 text-white hover:bg-destructive/80 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
         link: "text-muted-foreground/70 hover:text-primary hover:border-b hover:border-b-primary",
@@ -22,7 +24,7 @@ const buttonVariants = cva(
         default:
           "h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
         xs: "h-6 gap-1 p-2 rounded-none has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3",
-        sm: "h-7 py-3 px-2.5 gap-1 text-[11px] rounded-none has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5",
+        sm: "h-7 py-4 px-3.5 gap-1 text-[11px] rounded-none has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5",
         lg: "h-12 gap-1.5 tracking-widest px-3.5 py-4 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
         icon: "size-8",
         "icon-xs":

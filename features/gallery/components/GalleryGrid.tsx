@@ -1,7 +1,6 @@
 import type { Gallery } from '@/payload-types'
 import {GalleryCard} from "@/features/gallery/components/GalleryCard";
 
-
 export function GalleryGrid({ items }: { items: Gallery[] }) {
     if (items.length === 0) {
         return (

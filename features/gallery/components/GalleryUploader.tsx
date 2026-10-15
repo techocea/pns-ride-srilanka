@@ -3,7 +3,7 @@
 import {useState} from "react";
 import {Button} from "@/components/ui/button";
 import {useGalleryUpload} from "@/features/gallery/hooks/useGalleryUpload";
-import {ImageUploadZone} from "@/components/ui/ImageUploadZone";
+import {ImageUploadZone} from "@/components/cms/ImageUploadZone";
 
 export function GalleryUploader() {
     const {handleSubmit, pending, error, resetKey} = useGalleryUpload()

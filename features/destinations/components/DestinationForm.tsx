@@ -14,7 +14,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select'
-import {ImageUploadZone} from '@/components/ui/ImageUploadZone'
+import {ImageUploadZone} from '@/components/cms/ImageUploadZone'
 import type {ImageItem} from '@/features/media/hooks/use-image-items'
 import {useDestinationForm} from '../hooks/useDestinationForm'
 import {HIGHLIGHT_LIMITS, parseHighlights} from '../utils/highlights'

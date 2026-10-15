@@ -17,7 +17,7 @@ import type {Media, Tour} from '@/payload-types'
 import {Field, inputClass} from '@/components/ui/field'
 import {useTourForm} from '@/features/tours/hooks/useTourForm'
 import {TOUR_TYPES} from "@/features/tours/schemas/tour.schema";
-import {ImageUploadZone} from "@/components/ui/ImageUploadZone";
+import {ImageUploadZone} from "@/components/cms/ImageUploadZone";
 import type {ImageItem} from "@/features/media/hooks/use-image-items";
 import type {Destination} from "@/features/destinations/types";
 import {ItineraryEditor} from "@/features/tours/components/ItineraryEditor";
