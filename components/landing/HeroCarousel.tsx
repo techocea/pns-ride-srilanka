@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import {MapPin} from "lucide-react";
+import {HERO_SLIDES} from "@/lib/constants";
 import React, {useEffect, useRef, useState} from "react";
 import {AnimatePresence, useScroll, useTransform, motion} from "motion/react";
-import {HERO_SLIDES} from "@/lib/constants";
-import {MapPin} from "lucide-react";
+import {uploadthingLoader} from "@/features/gallery/utils/uploadthing-loader";
 
 const MotionImage = motion.create(Image);
 
@@ -50,8 +51,7 @@ export function HeroCarousel() {
                             scale: {duration: 4.5, ease: "linear"},
                         }}
                         fill
-                        priority
-                        unoptimized={true}
+                        loader={uploadthingLoader}
                         className="absolute inset-0 w-full h-[115%] object-cover object-center"
                     />
                 </AnimatePresence>

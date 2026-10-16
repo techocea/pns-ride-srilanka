@@ -4,7 +4,7 @@ import {site} from '@/lib/site'
 import {NAV_LINKS} from "@/lib/constants";
 import {MobileMenu} from "@/components/landing/MobileMenu";
 import {Button} from "@/components/ui/button";
-
+import {uploadthingLoader} from "@/features/gallery/utils/uploadthing-loader";
 
 export function Header() {
     return (
@@ -16,12 +16,13 @@ export function Header() {
                     className="flex items-center gap-3 text-left"
                     aria-label="Return to PNS ride sri lanka home"
                 >
-                    <Image src="/logo.jpg" width={100} height={80} alt={site.description}/>
+                    <Image src="/logo.jpg" width={100} height={80} loader={uploadthingLoader} alt={site.description}/>
                 </Link>
 
                 <nav aria-label="Main" className="hidden items-center gap-8 md:flex">
                     {NAV_LINKS.map((l) => (
-                        <Link key={l.href} href={l.href} className="text-sm text-muted-foreground transition hover:text-primary uppercase tracking-wider">
+                        <Link key={l.href} href={l.href}
+                              className="text-sm text-muted-foreground transition hover:text-primary uppercase tracking-wider">
                             {l.label}
                         </Link>
                     ))}

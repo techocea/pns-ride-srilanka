@@ -31,7 +31,7 @@ export default function TestimonialsSection() {
                 </div>
 
                 <TestimonialCards items={TESTIMONIALS} direction="right"
-                                  speed="slow"/>
+                                  speed="fast" pauseOnHover={false}/>
             </div>
         </section>
     )

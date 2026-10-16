@@ -1,9 +1,9 @@
 "use client"
 
-import {motion} from "motion/react";
 import Image from "next/image";
+import {motion} from "motion/react";
+import {InquiryButton} from "@/features/inquiries/components/InquiryButton";
 import {uploadthingLoader} from "@/features/gallery/utils/uploadthing-loader";
-import {Button} from "@/components/ui/button";
 
 export default function ContactSection() {
     return (
@@ -51,9 +51,7 @@ export default function ContactSection() {
                             transition={{delay: 0.3}}
                             whileHover={{x: 4}}
                         >
-                            <Button size={"lg"}>
-                                Start Your Enquiry
-                            </Button>
+                            <InquiryButton size="lg" label="Send an enquiry" />
                         </motion.div>
                     </div>
 

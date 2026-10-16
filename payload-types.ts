@@ -72,6 +72,7 @@ export interface Config {
     destinations: Destination;
     tours: Tour;
     gallery: Gallery;
+    inquiries: Inquiry;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -84,6 +85,7 @@ export interface Config {
     destinations: DestinationsSelect<false> | DestinationsSelect<true>;
     tours: ToursSelect<false> | ToursSelect<true>;
     gallery: GallerySelect<false> | GallerySelect<true>;
+    inquiries: InquiriesSelect<false> | InquiriesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -245,6 +247,24 @@ export interface Gallery {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "inquiries".
+ */
+export interface Inquiry {
+  id: string;
+  name: string;
+  email: string;
+  phone?: string | null;
+  message: string;
+  /**
+   * The package the visitor asked about, if any
+   */
+  tourTitle?: string | null;
+  status?: ('new' | 'contacted' | 'closed') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -286,6 +306,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'gallery';
         value: string | Gallery;
+      } | null)
+    | ({
+        relationTo: 'inquiries';
+        value: string | Inquiry;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -424,6 +448,20 @@ export interface ToursSelect<T extends boolean = true> {
 export interface GallerySelect<T extends boolean = true> {
   image?: T;
   caption?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "inquiries_select".
+ */
+export interface InquiriesSelect<T extends boolean = true> {
+  name?: T;
+  email?: T;
+  phone?: T;
+  message?: T;
+  tourTitle?: T;
+  status?: T;
   updatedAt?: T;
   createdAt?: T;
 }

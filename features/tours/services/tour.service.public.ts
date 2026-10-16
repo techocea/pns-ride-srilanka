@@ -2,7 +2,7 @@ import 'server-only'
 import { cache } from 'react'
 import type { Where } from 'payload'
 import { getPayloadClient } from '@/lib/payload'
-import { toTourCard } from '../mappers'
+import {toTourCard, toTourDetail} from '../mappers'
 
 const isPublished: Where = { status: { equals: 'published' } }
 
@@ -31,7 +31,7 @@ export const getTourBySlug = cache(async (slug: string) => {
         limit: 1,
         overrideAccess: false,
     })
-    return docs[0] ?? null
+    return docs[0] ? toTourDetail(docs[0]) : null
 })
 
 export async function getTourSitemapEntries() {

@@ -129,6 +129,21 @@
 @layer base {
     * {
         @apply border-border outline-ring/50;
+        border-radius: 0 !important;
+        scrollbar-width: thin;
+        scrollbar-color: var(--color-border) transparent;
+    }
+
+    *::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    *::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        background: var(--color-border);
     }
 
     body {
