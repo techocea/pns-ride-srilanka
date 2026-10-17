@@ -6,6 +6,7 @@ import {JsonLd} from "@/components/seo/JsonLd";
 import {organizationJsonLd} from "@/lib/seo";
 import {Header} from "@/components/landing/Header";
 import {Footer} from "@/components/landing/Footer";
+import {Analytics} from '@vercel/analytics/next';
 
 const cormorant = Cormorant({
     subsets: ['latin'],
@@ -40,6 +41,7 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
         <main id="main" className="bg-secondary">{children}</main>
         <Footer/>
         <JsonLd data={organizationJsonLd()}/>
+        <Analytics />
         </body>
         </html>
     )
