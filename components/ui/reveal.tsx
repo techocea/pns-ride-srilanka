@@ -1,6 +1,7 @@
 'use client'
 
 import { motion, useReducedMotion } from 'motion/react'
+import React from "react";
 
 const ease = [0.22, 1, 0.36, 1] as const
 

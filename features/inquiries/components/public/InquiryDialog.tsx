@@ -4,7 +4,7 @@ import {Input} from '@/components/ui/input'
 import {Field,} from '@/components/ui/field'
 import {Button} from '@/components/ui/button'
 import {Check, ChevronDown} from "lucide-react";
-import {useInquiryForm} from '../hooks/useInquiryForm'
+import {useInquiryForm} from '../../hooks/useInquiryForm'
 import {TRAVELER_OPTIONS} from "@/features/inquiries/constants";
 import {Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle} from '@/components/ui/dialog'
 

@@ -7,7 +7,7 @@ import {TOUR_TYPES} from "@/features/tours/schemas/tour.schema";
 import {tourJsonLd} from "@/features/tours/seo";
 import {PackageDetail} from "@/features/tours/components/public/package/PackageDetail";
 import {PRICE_CURRENCY} from "@/lib/constants";
-import {InquiryPanel} from "@/features/inquiries/components/InquiryPanel";
+import {InquiryPanel} from "@/features/inquiries/components/public/InquiryPanel";
 
 export const revalidate = 3600
 

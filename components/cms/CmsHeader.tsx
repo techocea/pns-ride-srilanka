@@ -1,18 +1,26 @@
 "use client";
 
 import Link from "next/link";
+import {cn} from "@/lib/utils";
 import {CMS_MENU} from "@/lib/constants";
 import {usePathname} from "next/navigation";
 import {Button} from "@/components/ui/button";
-import {cn} from "@/lib/utils";
-import {useState} from "react";
+import {useState, useTransition} from "react";
 import {AnimatePresence, LayoutGroup, motion} from "motion/react";
+import {logoutAction} from "@/features/auth/actions/auth.actions";
 
 const spring = {type: 'spring', stiffness: 500, damping: 40} as const
 
 export function CmsHeader() {
     const pathname = usePathname();
+    const [isPending, startTransition] = useTransition();
     const [hovered, setHovered] = useState<string | null>(null)
+
+    const handleLogout = () => {
+        startTransition(async () => {
+            await logoutAction();
+        })
+    }
 
     return (
         <header className="bg-background flex h-[70px] items-center justify-between border-b border-line bg-ink px-14">
@@ -52,7 +60,7 @@ export function CmsHeader() {
                                         <motion.span
                                             layoutId="nav-hover"
                                             transition={spring}
-                                            exit={{ opacity: 0 }}
+                                            exit={{opacity: 0}}
                                             className="absolute inset-x-0 bottom-0 h-px bg-primary"
                                         />
                                     )}
@@ -66,6 +74,8 @@ export function CmsHeader() {
                 <form>
                     <Button
                         variant="outline"
+                        disabled={isPending}
+                        onClick={handleLogout}
                         className="w-full text-xs uppercase tracking-widest"
                     >
                         Logout

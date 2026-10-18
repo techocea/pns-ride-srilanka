@@ -1,12 +1,12 @@
 "use client"
 
 import Link from 'next/link'
-import {site} from '@/lib/site'
-import {FOOTER_LINKS} from "@/lib/constants";
-import {motion} from 'motion/react';
 import Image from "next/image";
-import {Button} from "@/components/ui/button";
+import {site} from '@/lib/site'
+import {motion} from 'motion/react';
+import {FOOTER_LINKS} from "@/lib/constants";
 import {uploadthingLoader} from "@/features/gallery/utils/uploadthing-loader";
+import {InquiryButton} from "@/features/inquiries/components/public/InquiryButton";
 
 export function Footer() {
     return (
@@ -144,11 +144,7 @@ export function Footer() {
                     <p className="font-serif text-white text-xl lg:text-2xl text-center md:text-left">
                         Ready to discover Ceylon&apos;s hidden wonders?
                     </p>
-                    <Button
-                        size="lg"
-                    >
-                        Plan My Journey
-                    </Button>
+                    <InquiryButton size="lg" label="Plan my journey" className="uppercase" />
                 </div>
             </motion.div>
         </footer>

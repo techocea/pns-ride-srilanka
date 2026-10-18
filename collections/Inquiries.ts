@@ -4,10 +4,10 @@ export const Inquiries: CollectionConfig = {
     slug: 'inquiries',
     admin: { useAsTitle: 'name', defaultColumns: ['name', 'email', 'tourTitle', 'status', 'createdAt'] },
     access: {
-        create: () => false,
-        read: ({ req }) => Boolean(req.user),
-        update: ({ req }) => Boolean(req.user),
-        delete: ({ req }) => Boolean(req.user),
+        read: ({ req: { user } }) => Boolean(user),
+        create: ({ req: { user } }) => Boolean(user),
+        update: ({ req: { user } }) => Boolean(user),
+        delete: ({ req: { user } }) => Boolean(user),
     },
     fields: [
         { name: 'name', type: 'text', required: true },
