@@ -9,6 +9,9 @@ export const Tours: CollectionConfig = {
     },
     access: {
         read: () => true,
+        create: ({ req: { user } }) => Boolean(user),
+        update: ({ req: { user } }) => Boolean(user),
+        delete: ({ req: { user } }) => Boolean(user),
     },
     fields: [
         {name: 'title', type: 'text', required: true},

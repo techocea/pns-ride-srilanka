@@ -9,6 +9,9 @@ export const Destinations: CollectionConfig = {
     },
     access: {
         read: () => true,
+        create: ({req: {user}}) => Boolean(user),
+        update: ({req: {user}}) => Boolean(user),
+        delete: ({req: {user}}) => Boolean(user),
     },
     fields: [
         {name: 'title', type: 'text', required: true},
@@ -23,7 +26,7 @@ export const Destinations: CollectionConfig = {
                 readOnly: true,
                 description: 'Generated from the title',
             },
-            hooks: { beforeValidate: [autoSlug('title')] },
+            hooks: {beforeValidate: [autoSlug('title')]},
         },
         {
             name: 'status',

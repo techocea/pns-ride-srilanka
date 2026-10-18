@@ -33,7 +33,7 @@ export function PackageHero({ tour }: { tour: TourDetailData }) {
                     initial={{ opacity: 0, y: 24 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.25 }}
-                    className="max-w-xl"
+                    className="max-w-3xl"
                 >
                     <p className="mb-5 font-mono text-[11px] uppercase tracking-[0.3em] text-gold">
                         {tour.typeLabel} Journey · Sri Lanka

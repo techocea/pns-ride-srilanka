@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import {motion} from "motion/react";
-import {InquiryButton} from "@/features/inquiries/components/InquiryButton";
+import {InquiryButton} from "@/features/inquiries/components/public/InquiryButton";
 import {uploadthingLoader} from "@/features/gallery/utils/uploadthing-loader";
 
 export default function ContactSection() {

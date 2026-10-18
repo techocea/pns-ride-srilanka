@@ -7,7 +7,7 @@ import {TOUR_TYPES} from "@/features/tours/schemas/tour.schema";
 import {tourJsonLd} from "@/features/tours/seo";
 import {PackageDetail} from "@/features/tours/components/public/package/PackageDetail";
 import {PRICE_CURRENCY} from "@/lib/constants";
-import {InquiryPanel} from "@/features/inquiries/components/InquiryPanel";
+import {InquiryPanel} from "@/features/inquiries/components/public/InquiryPanel";
 
 export const revalidate = 3600
 
@@ -49,7 +49,6 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
 export default async function PackagePage({params}: Props) {
     const {slug} = await params
     const tour = await getTourBySlug(slug)
-    // console.log("Tour by slug:", slug, "\nTour:", tour)
     if (!tour) notFound()
 
 

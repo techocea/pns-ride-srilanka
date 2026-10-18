@@ -46,7 +46,6 @@ export function GallerySection({gallery}: { gallery: GalleryItemData[] }) {
                                         src={image.image.url}
                                         alt={image.caption || 'Gallery image'}
                                         fill
-                                        priority={true}
                                         loader={uploadthingLoader}
                                         sizes="(min-width: 768px) 25vw, 50vw"
                                         className="object-cover"

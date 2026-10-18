@@ -1,4 +1,4 @@
-"use client";
+    "use client";
 
 import {motion} from "motion/react";
 import {type DestinationCardData} from "@/features/destinations/types";

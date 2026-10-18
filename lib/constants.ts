@@ -1,5 +1,5 @@
 import {CmsMenuTabsType} from "@/types";
-import {ImageIcon, MapPin, Package, Star, Award, Users, Globe} from "lucide-react";
+import {ImageIcon, MapPin, Package, Star, Award, Users, Globe, FolderBookmark} from "lucide-react";
 
 export const PRICE_CURRENCY = "USD";
 
@@ -7,6 +7,7 @@ export const CMS_MENU: CmsMenuTabsType[] = [
     {href: "/cms/tours", label: "Tours", icon: Package},
     {href: "/cms/destinations", label: "Destinations", icon: MapPin},
     {href: "/cms/gallery", label: "Gallery", icon: ImageIcon},
+    {href: "/cms/inquiries", label: "Inquiries", icon: FolderBookmark},
 ] as const;
 
 export const NAV_LINKS = [

@@ -4,15 +4,17 @@ export const Inquiries: CollectionConfig = {
     slug: 'inquiries',
     admin: { useAsTitle: 'name', defaultColumns: ['name', 'email', 'tourTitle', 'status', 'createdAt'] },
     access: {
-        create: () => false,
-        read: ({ req }) => Boolean(req.user),
-        update: ({ req }) => Boolean(req.user),
-        delete: ({ req }) => Boolean(req.user),
+        read: ({ req: { user } }) => Boolean(user),
+        create: ({ req: { user } }) => Boolean(user),
+        update: ({ req: { user } }) => Boolean(user),
+        delete: ({ req: { user } }) => Boolean(user),
     },
     fields: [
         { name: 'name', type: 'text', required: true },
         { name: 'email', type: 'email', required: true },
-        { name: 'phone', type: 'text' },
+        { name: 'phone', type: 'text', required: true  },
+        { name: 'travelers', type: 'text', required: true  },
+        { name: 'travelDate', type: 'text',  admin: { description: 'Preferred travel date (YYYY-MM-DD)' }  },
         { name: 'message', type: 'textarea', required: true },
         { name: 'tourTitle', type: 'text', admin: { description: 'The package the visitor asked about, if any' } },
         {
