@@ -23,7 +23,6 @@ export function GalleryCard({ item }: { item: Gallery }) {
                         src={image.url}
                         alt={value || 'Gallery image'}
                         fill
-                        unoptimized
                         loader={uploadthingLoader}
                         sizes="(min-width: 768px) 25vw, 50vw"
                         className="object-cover"

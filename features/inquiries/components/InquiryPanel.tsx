@@ -1,12 +1,11 @@
 'use client'
 
+import Link from "next/link";
 import dynamic from 'next/dynamic'
-import {ChevronDown, Mail, MessageCircle, Users} from 'lucide-react'
+import {Button} from "@/components/ui/button";
+import {Calendar, ChevronDown, Mail, MessageCircle, Users} from 'lucide-react'
 import {useInquiryPanel} from "@/features/inquiries/hooks/useInquiryPanel";
 import {Traveler, TRAVELER_OPTIONS, travelerLabel} from "@/features/inquiries/constants";
-import Link from "next/link";
-import {Button} from "@/components/ui/button";
-
 
 const InquiryDialog = dynamic(() => import('./InquiryDialog').then((m) => m.InquiryDialog))
 
@@ -40,17 +39,20 @@ export function InquiryPanel({tourTitle, price, currency, whatsappNumber}: Props
             <div className="mt-6 space-y-5">
                 <label className="block">
                     <span className={labelClass}>Preferred travel date</span>
+                    <span className="relative block">
+                    <Calendar size={14} className="absolute left-4 top-1/2 -translate-y-1/2 text-gold"/>
                     <input
                         type="date"
                         value={b.travelDate}
                         min={b.minDate}
                         onChange={(e) => b.setTravelDate(e.target.value)}
-                        className={`${controlClass} px-4 py-3`}
+                        className={`${controlClass} py-3  pl-10 pr-10`}
                     />
+                    </span>
                 </label>
 
                 <label className="block">
-                    <span className={labelClass}>Travellers</span>
+                    <span className={labelClass}>Travelers</span>
                     <span className="relative block">
             <Users size={14} className="absolute left-4 top-1/2 -translate-y-1/2 text-gold"/>
             <select

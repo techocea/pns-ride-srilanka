@@ -12,7 +12,9 @@ export const Inquiries: CollectionConfig = {
     fields: [
         { name: 'name', type: 'text', required: true },
         { name: 'email', type: 'email', required: true },
-        { name: 'phone', type: 'text' },
+        { name: 'phone', type: 'text', required: true  },
+        { name: 'travelers', type: 'text', required: true  },
+        { name: 'travelDate', type: 'text',  admin: { description: 'Preferred travel date (YYYY-MM-DD)' }  },
         { name: 'message', type: 'textarea', required: true },
         { name: 'tourTitle', type: 'text', admin: { description: 'The package the visitor asked about, if any' } },
         {

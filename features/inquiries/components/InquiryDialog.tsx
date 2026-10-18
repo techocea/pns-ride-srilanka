@@ -1,12 +1,12 @@
 'use client'
 
-import {Button} from '@/components/ui/button'
 import {Input} from '@/components/ui/input'
 import {Field,} from '@/components/ui/field'
-import {Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle} from '@/components/ui/dialog'
-import {useInquiryForm} from '../hooks/useInquiryForm'
+import {Button} from '@/components/ui/button'
 import {Check, ChevronDown} from "lucide-react";
+import {useInquiryForm} from '../hooks/useInquiryForm'
 import {TRAVELER_OPTIONS} from "@/features/inquiries/constants";
+import {Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle} from '@/components/ui/dialog'
 
 type Props = {
     open: boolean;
@@ -25,7 +25,7 @@ const travelerLabel = (v: string) => `${v} ${v === '1' ? 'person' : 'people'}`
 export function InquiryDialog({open, onOpenChange, tourTitle, defaults}: Props) {
     const {handleSubmit, pending, result, reset} = useInquiryForm()
     const e = result.fieldErrors ?? {}
-
+    console.log("Inquiry result:", result);
     const minDate = new Date().toLocaleDateString('en-CA')
 
     const defaultMessage = tourTitle
@@ -50,7 +50,7 @@ export function InquiryDialog({open, onOpenChange, tourTitle, defaults}: Props) 
                 {/*{defaults && !result.ok && (*/}
                 {/*    <p className="text-xs text-muted-foreground">*/}
                 {/*        {defaults.travelDate ? `Preferred date: ${defaults.travelDate} · ` : ''}*/}
-                {/*        Travellers: {defaults.travelers}*/}
+                {/*        travelers: {defaults.travelers}*/}
                 {/*    </p>*/}
                 {/*)}*/}
 
@@ -87,12 +87,12 @@ export function InquiryDialog({open, onOpenChange, tourTitle, defaults}: Props) 
                                        placeholder="+94 77 000 0000"/>
                             </Field>
                             <Field label="Preferred travel date" error={e.travelDate} className="col-span-2 md:col-span-1">
-                                <Input name="phone" type="date"
+                                <Input name="travelDate" type="date"
                                        min={minDate}
                                        defaultValue={defaults?.travelDate ?? ''}
                                        className={control}/>
                             </Field>
-                            <Field label="Travelers" error={e.travellers} className="col-span-2">
+                            <Field label="travelers" error={e.travelers} className="col-span-2">
                                 <div className="relative">
                                     <select
                                         name="travelers"

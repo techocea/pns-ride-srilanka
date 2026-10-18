@@ -253,7 +253,12 @@ export interface Inquiry {
   id: string;
   name: string;
   email: string;
-  phone?: string | null;
+  phone: string;
+  travelers: string;
+  /**
+   * Preferred travel date (YYYY-MM-DD)
+   */
+  travelDate?: string | null;
   message: string;
   /**
    * The package the visitor asked about, if any
@@ -459,6 +464,8 @@ export interface InquiriesSelect<T extends boolean = true> {
   name?: T;
   email?: T;
   phone?: T;
+  travelers?: T;
+  travelDate?: T;
   message?: T;
   tourTitle?: T;
   status?: T;

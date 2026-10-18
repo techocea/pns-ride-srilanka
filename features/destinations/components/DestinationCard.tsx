@@ -5,6 +5,7 @@ import {useRef} from 'react'
 import {motion, useReducedMotion, useScroll, useTransform} from 'motion/react'
 import type {Destination} from '@/payload-types'
 import {RowActions} from './RowActions'
+import {uploadthingLoader} from "@/features/gallery/utils/uploadthing-loader";
 
 type Props = { destination: Destination; index: number }
 
@@ -44,8 +45,7 @@ export function DestinationCard({destination: dest, index}: Props) {
                                 src={cover.url}
                                 alt={cover.alt ?? dest.title}
                                 fill
-                                unoptimized
-                                loading={"eager"}
+                                loader={uploadthingLoader}
                                 sizes="(min-width: 1280px) 400px, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                                 className="object-cover"
                             />
