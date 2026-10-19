@@ -8,7 +8,7 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import Image from "next/image";
-import {RowActions} from "./RowActions";
+import {TourRowActions} from "./TourRowActions";
 import {Button} from "@/components/ui/button";
 import {uploadthingLoader} from "@/features/gallery/utils/uploadthing-loader";
 
@@ -63,8 +63,8 @@ export default function TourList({tours}: { tours: Tour[] }) {
                         <TableCell>{tour.durationDays} days</TableCell>
                         <TableCell>${tour.price.toLocaleString('en-US')}</TableCell>
                         <TableCell> <StatusBadge tour={tour}/></TableCell>
-                        <TableCell> <RowActions id={String(tour.id)} title={tour.title}
-                                                draft={draft}/></TableCell>
+                        <TableCell> <TourRowActions id={String(tour.id)} title={tour.title}
+                                                    draft={draft}/></TableCell>
                     </TableRow>
                 )
             })}

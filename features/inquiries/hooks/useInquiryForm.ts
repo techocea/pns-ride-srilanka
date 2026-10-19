@@ -1,26 +1,36 @@
 'use client'
 
-import React, { useState, useTransition } from 'react'
-import { sendGAEvent } from '@next/third-parties/google'
-import { submitInquiryAction } from '@/features/inquiries/actions/inquiry.action'
-import type { InquiryResult } from '@/features/inquiries/schemas/inquiry.schema'
+import {useActionState, useEffect, useState} from 'react'
+import {sendGAEvent} from '@next/third-parties/google'
+import {submitInquiryAction} from '@/features/inquiries/actions/inquiry.action'
+import type {InquiryResult} from '@/features/inquiries/schemas/inquiry.schema'
 
-export function useInquiryForm() {
-    const [pending, startTransition] = useTransition()
-    const [result, setResult] = useState<InquiryResult>({})
 
-    const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
-        event.preventDefault()
-        const data = new FormData(event.currentTarget)
+export function useInquiryForm(onSuccess?: () => void) {
+    const [state, formAction, pending] = useActionState<InquiryResult, FormData>(
+        submitInquiryAction,
+        {}
+    )
+    const [formKey, setFormKey] = useState(0)
 
-        startTransition(async () => {
-            const r = await submitInquiryAction(data)
-            setResult(r)
-            if (r.ok && process.env.NODE_ENV === 'production') {
-                sendGAEvent('event', 'generate_lead', { source: data.get('title') ? 'package' : 'general' })
+    useEffect(() => {
+        if (state?.ok) {
+            if (process.env.NODE_ENV === 'production') {
+                sendGAEvent('event', 'generate_lead', {source: 'inquiry'})
             }
-        })
+            onSuccess?.()
+        }
+    }, [state, onSuccess])
+    const reset = () => {
+        setFormKey((prev) => prev + 1)
     }
 
-    return { handleSubmit, pending, result, reset: () => setResult({}) }
+    return {
+        state,
+        formAction,
+        pending,
+        errors: state?.fieldErrors ?? {},
+        reset,
+        formKey,
+    }
 }

@@ -1,5 +1,5 @@
 import {z} from 'zod'
-import {TRAVELER_OPTIONS} from "@/features/inquiries/constants";
+import {INQUIRY_STATUS_VALUES, TRAVELER_OPTIONS} from "@/features/inquiries/constants";
 
 export const inquirySchema = z.object({
     name: z.string().trim().min(2, 'Please enter your name').max(80),
@@ -16,6 +16,12 @@ export const inquirySchema = z.object({
     tourTitle:
         z.string().trim().max(120),
 })
+
+
+const id = z.string().regex(/^[a-f0-9]{24}$/i, 'Invalid id')
+
+export const inquiryIdSchema = z.object({ id })
+export const inquiryStatusSchema = z.object({ id, status: z.enum(INQUIRY_STATUS_VALUES) })
 
 export type InquiryInput = z.output<typeof inquirySchema>
 export type InquiryResult = { ok?: boolean; error?: string; fieldErrors?: Record<string, string> }

@@ -4,8 +4,8 @@ import {Input} from '@/components/ui/input'
 import {Field,} from '@/components/ui/field'
 import {Button} from '@/components/ui/button'
 import {Check, ChevronDown} from "lucide-react";
-import {useInquiryForm} from '../../hooks/useInquiryForm'
 import {TRAVELER_OPTIONS} from "@/features/inquiries/constants";
+import {useInquiryForm} from "@/features/inquiries/hooks/useInquiryForm";
 import {Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle} from '@/components/ui/dialog'
 
 type Props = {
@@ -23,9 +23,11 @@ const travelerLabel = (v: string) => `${v} ${v === '1' ? 'person' : 'people'}`
 
 
 export function InquiryDialog({open, onOpenChange, tourTitle, defaults}: Props) {
-    const {handleSubmit, pending, result, reset} = useInquiryForm()
-    const e = result.fieldErrors ?? {}
-    console.log("Inquiry result:", result);
+    const { state, formAction, pending, errors:e, reset, formKey } = useInquiryForm(() => {
+        // Automatically close dialog on successful submission
+        onOpenChange(false)
+    })
+
     const minDate = new Date().toLocaleDateString('en-CA')
 
     const defaultMessage = tourTitle
@@ -54,7 +56,7 @@ export function InquiryDialog({open, onOpenChange, tourTitle, defaults}: Props) 
                 {/*    </p>*/}
                 {/*)}*/}
 
-                {result.ok ? (
+                {state?.ok ? (
                     <div className="grid justify-items-center gap-4 py-16 text-center">
                           <span className="grid size-12 place-items-center border border-gold text-gold">
                             <Check size={20}/>
@@ -67,7 +69,7 @@ export function InquiryDialog({open, onOpenChange, tourTitle, defaults}: Props) 
                                 onClick={() => onOpenChange(false)}>Close</Button>
                     </div>
                 ) : (
-                    <form onSubmit={handleSubmit} className="pt-8">
+                    <form key={formKey} action={formAction} className="pt-8">
                         <input type="hidden" name="tourTitle" value={tourTitle ?? ''}/>
 
                         {/* honeypot */}
@@ -113,7 +115,7 @@ export function InquiryDialog({open, onOpenChange, tourTitle, defaults}: Props) 
                                           className={textarea}/>
                             </Field>
 
-                            {result.error && <p role="alert" className="text-sm text-red-400">{result.error}</p>}
+                            {state?.error && <p role="alert" className="text-sm text-red-400">{state.error}</p>}
 
                             <Button type="submit" size="lg" disabled={pending} className="uppercase col-span-2">
                                 {pending ? 'Sending...' : 'Send enquiry'}
