@@ -13,10 +13,10 @@ export function AboutStory({image}: { image: PublicImage | null }) {
                 <Reveal className="grid gap-6">
                     <div>
                         <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.3em] text-gold">{story.eyebrow}</p>
-                        <h2 className="font-serif text-4xl capitalize leading-tight sm:text-5xl">{story.title}</h2>
+                        <h2 className="font-serif text-4xl capitalize leading-tight">{story.title}</h2>
                     </div>
                     {story.paragraphs.map((p, i) => (
-                        <p key={i} className="text-base leading-8 text-muted-foreground">{p}</p>
+                        <p key={i} className="text-base leading-8 text-justify text-muted-foreground">{p}</p>
                     ))}
                 </Reveal>
 

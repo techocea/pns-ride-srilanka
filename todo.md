@@ -34,7 +34,7 @@
   - [ ] `queries.ts` - Data fetching utilities for tours
   - [ ] `tour.actions.ts` - Server actions for create, update, and delete operations
   - [ ] `components/TourTable.tsx` - Tours data table
-  - [ ] `components/RowActions.tsx` - Table row action triggers (edit, delete)
+  - [ ] `components/TourRowActions.tsx` - Table row action triggers (edit, delete)
   - [ ] `components/TourForm.tsx` - Tour create/edit form
 
 ## Shared Utilities & Config

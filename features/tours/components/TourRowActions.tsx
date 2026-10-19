@@ -11,7 +11,7 @@ const btn =
 
 type Props = { id: string; title: string; draft: boolean }
 
-export function RowActions({id, title, draft}: Props) {
+export function TourRowActions({id, title, draft}: Props) {
     const {pending, toggle, remove} = useTourRowActions(id, title)
 
     return (
