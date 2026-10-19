@@ -8,6 +8,7 @@ import {Header} from "@/components/landing/Header";
 import {Footer} from "@/components/landing/Footer";
 import {Analytics} from '@vercel/analytics/next';
 import {TourFilterProvider} from "@/components/landing/TourFilterProvider";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const cormorant = Cormorant({
     subsets: ['latin'],
@@ -26,6 +27,8 @@ export const metadata: Metadata = {
     robots: site.indexable ? {index: true, follow: true} : {index: false, follow: false},
     verification: {google: process.env.GOOGLE_SITE_VERIFICATION},
 };
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID
 
 export default function RootLayout({children}: { children: React.ReactNode }) {
     return (
@@ -46,6 +49,7 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
         <Footer/>
         <JsonLd data={organizationJsonLd()}/>
         <Analytics/>
+        {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
         </body>
         </html>
     );
