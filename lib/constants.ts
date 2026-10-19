@@ -11,8 +11,8 @@ export const CMS_MENU: CmsMenuTabsType[] = [
 ] as const;
 
 export const NAV_LINKS = [
-    {href: '/#packages', label: 'Packages'},
-    {href: '/#destinations', label: 'Destinations'},
+    {href: '/packages', label: 'Packages'},
+    {href: '/destinations', label: 'Destinations'},
     {href: '/#gallery', label: 'Gallery'},
     {href: '/about', label: 'About'},
 ] as const
@@ -20,7 +20,7 @@ export const NAV_LINKS = [
 export const FOOTER_LINKS = [
     {href: '/privacy-policy', label: 'Privacy Policy'},
     {href: '/terms-and-conditions', label: 'Terms and Conditions'},
-    {href: '/about-us', label: 'About Us'},
+    {href: '/about', label: 'About Us'},
     {href: '/#testimonials', label: 'Testimonials'},
     {href: '/blogs', label: 'Blogs'},
 ] as const

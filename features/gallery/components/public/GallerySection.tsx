@@ -7,7 +7,7 @@ import {uploadthingLoader} from "@/features/gallery/utils/uploadthing-loader";
 
 export function GallerySection({gallery}: { gallery: GalleryItemData[] }) {
     return (
-        <section id="gallery" aria-labelledby="gallery-title" className="scroll-mt-20 px-6 py-20 md:py-28">
+        <section id="gallery" aria-labelledby="gallery-title" className="scroll-mt-20 px-6 py-20">
             <div className="mx-auto max-w-6xl w-full">
                 <div className="md:max-w-lg w-full mx-auto space-y-6 text-center mb-12">
                     <motion.p

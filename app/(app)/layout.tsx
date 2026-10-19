@@ -7,6 +7,7 @@ import {organizationJsonLd} from "@/lib/seo";
 import {Header} from "@/components/landing/Header";
 import {Footer} from "@/components/landing/Footer";
 import {Analytics} from '@vercel/analytics/next';
+import {TourFilterProvider} from "@/components/landing/TourFilterProvider";
 
 const cormorant = Cormorant({
     subsets: ['latin'],
@@ -38,12 +39,14 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
             Skip to content
         </a>
         <Header/>
-        <main id="main" className="bg-secondary">{children}</main>
+        <TourFilterProvider>
+            <main id="main" className="bg-secondary">
+                {children}</main>
+        </TourFilterProvider>
         <Footer/>
         <JsonLd data={organizationJsonLd()}/>
-        <Analytics />
+        <Analytics/>
         </body>
         </html>
-    )
-        ;
+    );
 }

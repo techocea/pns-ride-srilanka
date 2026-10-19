@@ -1,5 +1,5 @@
-export default function Dashboard() {
-    return (
-        <div>Dashboard Page</div>
-    )
+import {redirect} from "next/navigation";
+
+export default function CMSPage() {
+    redirect('/cms/tours')
 }

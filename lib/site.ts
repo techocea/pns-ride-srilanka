@@ -8,8 +8,8 @@ export const site = {
     contacts: [
         {
             icon: PhoneIcon,
-            label: "Phone",
-            description: '+94765711106'
+            label: "+94765711106",
+            description: '+94 76 571 1106'
         },
         {
             icon: MailIcon,

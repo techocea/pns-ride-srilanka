@@ -10,7 +10,7 @@ export default function Destinations({
     destinations: DestinationCardData[]
 }) {
     return (
-        <section id="destinations" aria-labelledby="destinations-title" className="scroll-mt-20 py-20 md:py-28">
+        <section id="destinations" aria-labelledby="destinations-title" className="scroll-mt-20 py-20">
             <div className="mx-auto max-w-6xl w-full">
                 <div className="md:max-w-lg w-full mx-auto space-y-6 text-center mb-12">
                     <motion.p

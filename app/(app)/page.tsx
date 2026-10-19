@@ -20,6 +20,7 @@ export default async function Home() {
             <ToursSection tours={tours}/>
             <StatsSection/>
             <DestinationsSection destinations={destinations}/>
+            <hr/>
             <GallerySection gallery={gallery}/>
             <hr/>
             <TestimonialSection/>

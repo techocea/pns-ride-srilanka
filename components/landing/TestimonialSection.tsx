@@ -6,7 +6,7 @@ import {TestimonialCards} from "@/components/ui/testimonial-cards";
 
 export default function TestimonialsSection() {
     return (
-        <section className="scroll-mt-20 py-20 md:py-24">
+        <section id="testimonials" className="scroll-mt-20 py-20 md:py-24">
             <div className="mx-auto max-w-6xl w-full">
                 <div className="md:max-w-lg w-full mx-auto space-y-6 text-center mb-12">
                     <motion.p
@@ -31,7 +31,7 @@ export default function TestimonialsSection() {
                 </div>
 
                 <TestimonialCards items={TESTIMONIALS} direction="right"
-                                  speed="fast" pauseOnHover={false}/>
+                                  speed="normal" pauseOnHover={false}/>
             </div>
         </section>
     )

@@ -20,7 +20,7 @@ export function ToursSection({tours}: { tours: TourCardData[] }) {
     const visible = useMemo(() => filterTours(tours, {type, destination}), [tours, type, destination])
 
     return (
-        <section id="packages" aria-labelledby="packages-title" className="scroll-mt-20 px-6 py-20 md:py-28">
+        <section id="packages" aria-labelledby="packages-title" className="px-6 py-20">
             <div className="mx-auto max-w-6xl w-full">
                 <div className="md:max-w-lg w-full mx-auto space-y-6 text-center">
                     <p className="text-[11px] uppercase tracking-[0.3em] text-gold">curated journeys</p>

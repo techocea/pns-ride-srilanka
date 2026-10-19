@@ -1,12 +1,12 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import type { Traveler } from '../constants'
-import { buildWhatsAppUrl } from '../utils/whatsapp'
+import {useEffect, useState} from 'react'
+import type {Traveler} from '../constants'
+import {buildWhatsAppUrl} from '../utils/whatsapp'
 
 type Args = { tourTitle: string; whatsappNumber?: string }
 
-export function useInquiryPanel({ tourTitle, whatsappNumber }: Args) {
+export function useInquiryPanel({tourTitle, whatsappNumber}: Args) {
     const [travelDate, setTravelDate] = useState('')
     const [travelers, setTravelers] = useState<Traveler>('2')
     const [open, setOpen] = useState(false)
@@ -23,8 +23,19 @@ export function useInquiryPanel({ tourTitle, whatsappNumber }: Args) {
     }
 
     const whatsappUrl = whatsappNumber
-        ? buildWhatsAppUrl({ number: '+94762722894', tourTitle, travelDate, travelers })
+        ? buildWhatsAppUrl({number: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER as string, tourTitle, travelDate, travelers})
         : null
 
-    return { travelDate, setTravelDate, travelers, setTravelers, minDate, open, setOpen, everOpened, openDialog, whatsappUrl }
+    return {
+        travelDate,
+        setTravelDate,
+        travelers,
+        setTravelers,
+        minDate,
+        open,
+        setOpen,
+        everOpened,
+        openDialog,
+        whatsappUrl
+    }
 }

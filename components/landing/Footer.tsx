@@ -40,7 +40,7 @@ export function Footer() {
                     </div>
 
                     <div>
-                        <p className=" text-sm tracking-[0.3em] uppercase text-gold mb-6">
+                        <p className="text-[11px] tracking-[0.3em] uppercase text-gold mb-6">
                             Packages
                         </p>
                         <ul className="space-y-3">
@@ -65,7 +65,7 @@ export function Footer() {
                     </div>
 
                     <div>
-                        <p className=" text-[11px] tracking-[0.3em] uppercase text-gold mb-6">
+                        <p className="text-[11px] tracking-[0.3em] uppercase text-gold mb-6">
                             Destinations
                         </p>
                         <ul className="space-y-3">

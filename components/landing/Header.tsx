@@ -5,6 +5,7 @@ import {NAV_LINKS} from "@/lib/constants";
 import {MobileMenu} from "@/components/landing/MobileMenu";
 import {Button} from "@/components/ui/button";
 import {uploadthingLoader} from "@/features/gallery/utils/uploadthing-loader";
+import {InquiryButton} from "@/features/inquiries/components/public/InquiryButton";
 
 export function Header() {
     return (
@@ -29,10 +30,10 @@ export function Header() {
                 </nav>
 
                 <div className="hidden md:flex gap-4 items-center justify-center">
-                        <span className="text-muted-foreground hover:text-primary transition-colors">
-                          <Link href={site.contacts[0].description}>{site.contacts[0].description}</Link>
+                        <span className="text-muted-foreground text-sm hover:text-primary transition-colors">
+                          <a href={`tel:${site.contacts[0].label}`}>{site.contacts[0].description}</a>
                         </span>
-                    <Button variant={"outline"}>ENQUIRE NOW</Button>
+                    <InquiryButton variant={"outline"} size="sm" label="Enquire Now" className="uppercase"/>
                 </div>
 
                 <MobileMenu links={NAV_LINKS}/>

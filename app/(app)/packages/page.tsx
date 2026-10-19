@@ -1,3 +1,8 @@
-export default function Packages(){
-    return <h1>Packages page</h1>
+import {ToursSection} from "@/features/tours/components/public/ToursSection";
+import {getPublishedTours} from "@/features/tours/services/tour.service.public";
+
+export default async function PackagesPage() {
+    const tours = await getPublishedTours();
+
+    return <ToursSection tours={tours}/>
 }

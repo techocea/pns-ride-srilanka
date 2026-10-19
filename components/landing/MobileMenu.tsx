@@ -5,6 +5,7 @@ import {useEffect, useState} from 'react'
 import {Menu, X} from 'lucide-react'
 import {Button} from "@/components/ui/button";
 import {AnimatePresence, motion, Variants} from "motion/react";
+import {InquiryButton} from "@/features/inquiries/components/public/InquiryButton";
 
 type Props = { links: readonly { href: string; label: string }[] }
 
@@ -66,7 +67,7 @@ export function MobileMenu({links}: Props) {
                             </MotionLink>
                         ))}
                         <div className="mt-12 w-full">
-                            <Button size={"lg"} className="w-full" variant={"outline"}>ENQUIRE NOW</Button>
+                            <InquiryButton variant={"outline"} size="sm" label="Enquire Now" className="uppercase"/>
                         </div>
                     </motion.div>
                 )}
