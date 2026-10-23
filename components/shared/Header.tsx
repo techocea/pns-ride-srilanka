@@ -16,7 +16,7 @@ export function Header() {
                     className="flex items-center gap-3 text-left"
                     aria-label="Return to PNS ride sri lanka home"
                 >
-                    <Image src="/logo.webp" width={100} height={80} alt={site.description}/>
+                    <Image src="/logo.webp" width={64} height={64} alt={site.description}/>
                 </Link>
 
                 <nav aria-label="Main" className="hidden items-center gap-8 md:flex">

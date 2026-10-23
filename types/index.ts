@@ -5,3 +5,13 @@ export interface CmsMenuTabsType {
     label: string;
     icon: LucideIcon;
 }
+
+export type StatItem = {
+    icon: string;
+    value: string;
+    label: string;
+};
+
+interface StatsSectionProps {
+    items: StatItem[];
+}

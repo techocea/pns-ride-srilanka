@@ -1,4 +1,5 @@
-import { Car, UserCheck, Map, Clock } from 'lucide-react'
+import {Car, UserCheck, Map, Clock} from 'lucide-react'
+import {Reveal} from "@/components/ui/reveal";
 
 const features = [
     {
@@ -16,33 +17,31 @@ const features = [
         title: '100% Tailor-Made Itineraries',
         description: 'Explore at your own pace. Stop anytime for fresh king coconuts, scenic photos, or local lunch spots.',
     },
-    {
-        icon: Clock,
-        title: '24/7 On-Road Support',
-        description: 'From Colombo Airport (CMB) pickup to end-of-tour drops, our team provides round-the-clock assistance.',
-    },
 ]
 
 export function WhyChooseUsSection() {
     return (
-        <section className="py-20 bg-background text-foreground">
-            <div className="container mx-auto px-4">
-                <div className="text-center max-w-2xl mx-auto mb-12">
-                    <span className="text-xs uppercase tracking-widest text-gold font-semibold">The PNS Difference</span>
-                    <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mt-2">Why Travel Sri Lanka With Us?</h2>
+        <section className="px-6 py-20">
+            <div className="mx-auto max-w-6xl w-full space-y-10">
+                <div className="md:max-w-lg w-full mx-auto space-y-6 text-center">
+                    <p className="text-[11px] uppercase tracking-[0.3em] text-gold">The PNS Difference</p>
+                    <h2 id="packages-title" className="mt-3 font-serif capitalize text-4xl md:text-5xl">Why Travel Sri
+                        Lanka With
+                        Us?</h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="grid gap-2 bg-line md:grid-cols-3">
                     {features.map((item, index) => {
                         const Icon = item.icon
                         return (
-                            <div key={index} className="p-6 rounded-xl border border-border bg-card/50 hover:border-gold/50 transition">
-                                <div className="size-12 rounded-lg bg-gold/10 text-gold flex items-center justify-center mb-5">
-                                    <Icon className="size-6" />
+                            <Reveal as="div" key={item.title} delay={index * 0.1}
+                                    className="grid content-start gap-4 bg-accent border border-border p-8">
+                                <div className="p-2.5 w-fit bg-gold/10 text-gold shrink-0">
+                                    <Icon className="size-5"/>
                                 </div>
-                                <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-                                <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
-                            </div>
+                                <h3 className="font-serif capitalize text-2xl">{item.title}</h3>
+                                <p className="text-sm leading-7 text-muted-foreground">{item.description}</p>
+                            </Reveal>
                         )
                     })}
                 </div>

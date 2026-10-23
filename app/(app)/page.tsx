@@ -1,5 +1,7 @@
+
+import React from "react";
+import {STATS, TRUST_US} from "@/lib/constants";
 import {Hero} from "@/features/home/components/Hero";
-import {StatsSection} from "@/features/home/components/StatsSection";
 import ContactSection from "@/features/inquiries/components/public/ContactSection";
 import {AboutTeaser} from "@/features/about/components/AboutTeaser";
 import TestimonialSection from "@/features/home/components/TestimonialSection";
@@ -9,12 +11,9 @@ import {getPublishedTours} from "@/features/tours/services/tour.service.public";
 import {getPublicGallery} from "@/features/gallery/services/gallery.service.public";
 import DestinationsSection from "@/features/destinations/components/public/DestinationsSection";
 import {getPublishedDestinations} from "@/features/destinations/services/destination.service.public";
-import {TrustBadgesBar} from "@/features/home/components/TrustBadgesBar";
+import {StatsSection} from "@/features/home/components/StatsSection";
 import {WhyChooseUsSection} from "@/features/home/components/WhyChooseUsSection";
 import {FaqSection} from "@/features/home/components/FaqSection";
-import {FloatingWhatsApp} from "@/components/shared/FloatingWhatsApp";
-import React from "react";
-
 
 export default async function Home() {
     const [tours, destinations, gallery] = await Promise.all([getPublishedTours(), getPublishedDestinations(), getPublicGallery()]);
@@ -26,19 +25,22 @@ export default async function Home() {
     return (
         <React.Fragment>
             <Hero/>
-            <TrustBadgesBar />
-            <StatsSection/>
-            <WhyChooseUsSection />
+            <StatsSection items={TRUST_US}/>
+            <WhyChooseUsSection/>
+            <hr/>
             <AboutTeaser image={aboutImage}/>
+            <StatsSection items={STATS}/>
+            {/*<TripPlannerWidget />*/}
             <ToursSection tours={tours}/>
             <DestinationsSection destinations={destinations}/>
             <hr/>
             <GallerySection gallery={gallery}/>
             <hr/>
             <TestimonialSection/>
-            <FaqSection />
+            <hr/>
+            <FaqSection/>
             <ContactSection/>
-            <FloatingWhatsApp />
+            <hr/>
         </React.Fragment>
     )
 }

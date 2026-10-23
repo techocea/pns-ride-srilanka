@@ -1,5 +1,10 @@
-import {CmsMenuTabsType} from "@/types";
-import {ImageIcon, MapPin, Package, Star, Award, Users, Globe, Inbox } from "lucide-react";
+import {CmsMenuTabsType, StatItem} from "@/types";
+import {
+    ImageIcon,
+    MapPin,
+    Package,
+    Inbox,
+} from "lucide-react";
 
 export const PRICE_CURRENCY = "USD";
 
@@ -7,7 +12,7 @@ export const CMS_MENU: CmsMenuTabsType[] = [
     {href: "/cms/tours", label: "Tours", icon: Package},
     {href: "/cms/destinations", label: "Destinations", icon: MapPin},
     {href: "/cms/gallery", label: "Gallery", icon: ImageIcon},
-    {href: "/cms/inquiries", label: "Inquiries", icon: Inbox },
+    {href: "/cms/inquiries", label: "Inquiries", icon: Inbox},
 ] as const;
 
 export const NAV_LINKS = [
@@ -48,12 +53,19 @@ export const HERO_SLIDES = [
     },
 ] as const;
 
-export const STATS = [
-    {value: "2,400+", label: "Journeys Crafted", icon: Globe},
-    {value: "17", label: "Years of Expertise", icon: Award},
-    {value: "98%", label: "Guest Satisfaction", icon: Star},
-    {value: "64", label: "Countries Served", icon: Users},
-] as const
+export const STATS: StatItem[] = [
+    {value: "2,400+", label: "Journeys Crafted", icon: 'Globe'},
+    {value: "17", label: "Years of Expertise", icon: 'Award'},
+    {value: "98%", label: "Guest Satisfaction", icon: 'Star'},
+    {value: "64", label: "Countries Served", icon: 'Users'},
+]
+
+export const TRUST_US: StatItem[] = [
+    {value: "5.0 Star Rated", label: "Top Rated on Google & TripAdvisor", icon: 'Star'},
+    {value: "SLTDA Registered", label: "Official Sri Lanka Tourism License", icon: 'ShieldCheck'},
+    {value: "Luxury Vehicle Fleet", label: "Fully insured A/C Cars & Vans", icon: 'Award'},
+    {value: "Zero Hidden Fees", label: "All fuel, tolls & driver charges included", icon: 'HeartHandshake'},
+]
 
 export const TESTIMONIALS = [
     {

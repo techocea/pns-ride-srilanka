@@ -1,29 +1,46 @@
-"use client";
+"use client"
 
-import {STATS} from "@/lib/constants";
+import {Compass, Award, Star, Users, ShieldCheck, HeartHandshake, type LucideIcon} from "lucide-react";
 import {motion} from "motion/react";
+import {StatItem} from "@/types";
 
-export function StatsSection() {
+const ICON_MAP: Record<string, LucideIcon> = {
+    Compass,
+    Award,
+    Star,
+    Users,
+    HeartHandshake,
+    ShieldCheck
+};
+
+export function StatsSection({items}: { items: StatItem[] }) {
     return (
-        <section id="statistics" className="border-y border-border bg-accent">
+        <section className="bg-accent border-y border-border text-white py-6">
             <div className="max-w-6xl w-full mx-auto px-0 md:px-12">
-                <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-border">
-                    {STATS.map(({value, label, icon: Icon}, i) => (
-                        <motion.div
-                            key={label}
-                            initial={{opacity: 0, y: 20}}
-                            whileInView={{opacity: 1, y: 0}}
-                            viewport={{once: true}}
-                            transition={{delay: i * 0.1}}
-                            className="px-8 py-12 text-center border-b lg:border-b-0 border-border"
-                        >
-                            <Icon size={24} className="text-gold mx-auto mb-4"/>
-                            <div className="font-serif text-4xl text-white mb-2">{value}</div>
-                            <div className="font-mono text-[11px] tracking-[0.25em] uppercase text-muted-foreground">
-                                {label}
-                            </div>
-                        </motion.div>
-                    ))}
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 divide-x divide-border">
+                    {items.map((item, index) => {
+                        const Icon = ICON_MAP[item.icon] || Compass; // Fallback icon if key missing
+                        return (
+                            <motion.div
+                                key={index}
+                                initial={{opacity: 0, y: 20}}
+                                whileInView={{opacity: 1, y: 0}}
+                                transition={{duration: 0.5, delay: index * 0.1}}
+                                viewport={{once: true}}
+                                className="flex flex-col items-center text-center gap-2 p-4"
+                            >
+                                <div className="p-2.5 bg-gold/10 text-gold shrink-0">
+                                    <Icon className="size-5" />
+                                </div>
+                                <span className="text-xl font-serif tracking-tight text-white mb-1">
+                  {item.value}
+                </span>
+                                <span className="text-[11px] uppercase font-sans tracking-widest text-white/60 font-medium">
+                  {item.label}
+                </span>
+                            </motion.div>
+                        );
+                    })}
                 </div>
             </div>
         </section>
