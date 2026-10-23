@@ -4,8 +4,9 @@ import Link from "next/link";
 import {cn} from "@/lib/utils";
 import {CMS_MENU} from "@/lib/constants";
 import {usePathname} from "next/navigation";
-import {Button} from "@/components/ui/button";
 import {useState, useTransition} from "react";
+import {LogoutButton} from "@/components/cms/LogoutButton";
+import {MobileMenu} from "@/components/shared/MobileMenu";
 import {AnimatePresence, LayoutGroup, motion} from "motion/react";
 import {logoutAction} from "@/features/auth/actions/auth.actions";
 
@@ -23,15 +24,16 @@ export function CmsHeader() {
     }
 
     return (
-        <header className="bg-background flex h-[70px] items-center justify-between border-b border-line bg-ink px-14">
+        <header
+            className="bg-background flex h-[70px] items-center justify-between border-b border-line bg-ink px-4 py-3 md:px-8">
             <div className="flex items-center gap-6">
                 <span className="font-serif text-sm">
-          PNS RIDE SRI LANKA <span className="font-sans text-[10px] tracking-[0.2em] text-gold">&nbsp;CMS STUDIO</span>
+          PNS RIDE SRI LANKA <span className="font-sans text-[11px] tracking-[0.2em] text-gold">&nbsp;CMS STUDIO</span>
         </span>
             </div>
 
             <LayoutGroup id="cms-nav">
-                <nav onMouseLeave={() => setHovered(null)} className="flex gap-8">
+                <nav onMouseLeave={() => setHovered(null)} className="hidden md:flex gap-8">
                     {CMS_MENU.map((item, idx) => {
                         const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`)
 
@@ -70,18 +72,12 @@ export function CmsHeader() {
                     })}
                 </nav>
             </LayoutGroup>
-            <div>
-                <form>
-                    <Button
-                        variant="outline"
-                        disabled={isPending}
-                        onClick={handleLogout}
-                        className="w-full text-xs uppercase tracking-widest"
-                    >
-                        Logout
-                    </Button>
-                </form>
+
+            <div className="hidden md:flex">
+                <LogoutButton isPending={isPending} onClick={handleLogout}/>
             </div>
+
+            <MobileMenu mode={"cms"} links={CMS_MENU} onClick={handleLogout}/>
         </header>
     )
 }

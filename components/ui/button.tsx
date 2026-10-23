@@ -3,13 +3,13 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 
 const buttonVariants = cva(
-  "group/button tracking-wider inline-flex shrink-0 cursor-pointer items-center font-medium justify-center rounded-none border border-transparent bg-clip-padding text-[12px] tracking-[0.18em] font-medium whitespace-nowrap transition-all outline-none select-none  active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "group/button tracking-wider uppercase inline-flex shrink-0 cursor-pointer items-center font-medium justify-center rounded-none border border-transparent bg-clip-padding text-[12px] tracking-[0.18em] font-medium whitespace-nowrap transition-all outline-none select-none  active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       variant: {
         default: "bg-primary text-black hover:bg-primary/80",
         outline:
-          "border-primary bg-background hover:bg-muted text-primary hover:text-secondary hover:border-none aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50",
+          "border-primary bg-transparent hover:bg-muted text-primary hover:text-secondary hover:border-none aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50",
         "outline-gray":
           "border border-border hover:bg-muted-foreground/50 text-muted-foreground hover:text-white transition-colors",
         secondary:
@@ -22,10 +22,10 @@ const buttonVariants = cva(
       },
       size: {
         default:
-          "h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
+          "h-10 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
         xs: "h-6 gap-1 p-2 rounded-none has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3",
         sm: "h-7 py-4 px-3.5 gap-1 text-[11px] rounded-none has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5",
-        lg: "h-12 gap-1.5 tracking-widest px-9 py-4 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
+        lg: "h-12 gap-1.5 tracking-widest px-8 py-4 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
         icon: "size-8",
         "icon-xs":
           "size-6 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-lg [&_svg:not([class*='size-'])]:size-3",

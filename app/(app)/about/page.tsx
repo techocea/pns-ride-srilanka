@@ -23,8 +23,6 @@ const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one :
 export default async function AboutPage() {
     const [tours, destinations] = await Promise.all([getPublishedTours(), getPublishedDestinations()])
 
-    const photos = destinations.flatMap((d) => (d.image ? [d.image] : []))
-
     const summary =
         tours.length && destinations.length
             ? `${plural(tours.length, 'journey', 'journeys')} across ${plural(destinations.length, 'destination', 'destinations')}`
@@ -41,8 +39,8 @@ export default async function AboutPage() {
                 }}
             />
 
-            <AboutHero image={photos[0] ?? null} summary={summary} />
-            <AboutStory image={photos[1] ?? photos[0] ?? null} />
+            <AboutHero summary={summary} />
+            <AboutStory  />
             <AboutValues />
             <AboutDestinations destinations={destinations} />
             <AboutCta action={<InquiryButton  size="lg" label="Plan my trip" className="uppercase" />} />

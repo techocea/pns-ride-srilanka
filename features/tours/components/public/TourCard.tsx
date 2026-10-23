@@ -8,7 +8,6 @@ import {ArrowUpRight} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {TourCardData} from "@/features/tours/types";
 import {TOUR_TYPES} from "@/features/tours/schemas/tour.schema";
-import {uploadthingLoader} from "@/features/gallery/utils/uploadthing-loader";
 
 export function TourCard({tour}: { tour: TourCardData }) {
     const [hovered, setHovered] = useState(false)
@@ -26,7 +25,6 @@ export function TourCard({tour}: { tour: TourCardData }) {
                             src={tour.image.url}
                             alt={tour.image.alt}
                             fill
-                            loader={uploadthingLoader}
                             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                             className="object-cover transition duration-500 group-hover:scale-105"
                         />

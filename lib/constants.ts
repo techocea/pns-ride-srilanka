@@ -18,8 +18,8 @@ export const NAV_LINKS = [
 ] as const
 
 export const FOOTER_LINKS = [
-    {href: '/privacy-policy', label: 'Privacy Policy'},
-    {href: '/terms-and-conditions', label: 'Terms and Conditions'},
+    {href: '/privacy', label: 'Privacy Policy'},
+    {href: '/terms', label: 'Terms and Conditions'},
     {href: '/about', label: 'About Us'},
     {href: '/#testimonials', label: 'Testimonials'},
     {href: '/blogs', label: 'Blogs'},
@@ -28,22 +28,22 @@ export const FOOTER_LINKS = [
 export const HERO_SLIDES = [
     {
         image:
-            "https://g4518yf2e3.ufs.sh/f/iz1TLKwtTZx3zJYd1k0xkSnDcbNQhqF4Xt29PJH3LZm6WovU",
+            "/sigiriya.webp",
         alt: "The ancient Sigiriya rock fortress rising above the Sri Lankan landscape",
     },
     {
         image:
-            "https://g4518yf2e3.ufs.sh/f/iz1TLKwtTZx3oJeSTDN61sBPhYRwAWLVufzoq4eaXlQgmb5v",
+            "/ella.webp",
         alt: "A train crossing Nine Arch Bridge through the forest near Ella",
     },
     {
         image:
-            "https://g4518yf2e3.ufs.sh/f/iz1TLKwtTZx3Hmm585L4gbAx03VuBhDijQ8ZlyPGSfvHK92I",
+            "/galle.webp",
         alt: "Aerial view of a palm-fringed tropical beach on Sri Lanka’s southern coast",
     },
     {
         image:
-            "https://g4518yf2e3.ufs.sh/f/iz1TLKwtTZx38LV1yXp1KVsAcfh9gDNyw4EBkqpT7XZFxiUI",
+            "/kandy.webp",
         alt: "Wild elephants standing in the water in a Sri Lankan national park",
     },
 ] as const;

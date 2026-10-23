@@ -8,7 +8,6 @@ import {useCaptionEditor} from "@/features/gallery/hooks/useCaptionEditor";
 import {useDeleteGalleryItem} from "@/features/gallery/hooks/useDeleteGalleryItems";
 import {Button} from "@/components/ui/button";
 import {Label} from "@/components/ui/label";
-import {uploadthingLoader} from "@/features/gallery/utils/uploadthing-loader";
 
 export function GalleryCard({ item }: { item: Gallery }) {
     const image = typeof item.image === 'object' ? item.image : null
@@ -16,14 +15,13 @@ export function GalleryCard({ item }: { item: Gallery }) {
     const { pending, remove, error: deleteError } = useDeleteGalleryItem(item.id, item.caption)
 
     return (
-        <div className={`relative bg-surface p-3 transition-opacity ${pending ? 'opacity-50' : ''}`}>
+        <div className={`relative bg-none md:p-3 transition-opacity ${pending ? 'opacity-50' : ''}`}>
             <div className="relative mb-3 aspect-square overflow-hidden bg-ink">
                 {image?.url ? (
                     <Image
                         src={image.url}
                         alt={value || 'Gallery image'}
                         fill
-                        loader={uploadthingLoader}
                         sizes="(min-width: 768px) 25vw, 50vw"
                         className="object-cover"
                     />

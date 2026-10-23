@@ -5,7 +5,6 @@ import {MapPin} from "lucide-react";
 import {HERO_SLIDES} from "@/lib/constants";
 import React, {useEffect, useRef, useState} from "react";
 import {AnimatePresence, useScroll, useTransform, motion} from "motion/react";
-import {uploadthingLoader} from "@/features/gallery/utils/uploadthing-loader";
 
 const MotionImage = motion.create(Image);
 
@@ -32,7 +31,7 @@ export function HeroCarousel() {
         <section
             ref={ref}
             id="hero"
-            className="relative w-full min-h-screen min-h-[660px] overflow-hidden bg-accent"
+            className="relative w-full min-h-screen sm:h-[660px] overflow-hidden bg-accent"
         >
             <motion.div
                 style={{y: imgY}}
@@ -43,7 +42,7 @@ export function HeroCarousel() {
                         key={slide.image}
                         src={slide.image}
                         alt={slide.alt}
-                        initial={{opacity: 0, scale: 1.04}}
+                        initial={false}
                         animate={{opacity: 1, scale: 1}}
                         exit={{opacity: 0}}
                         transition={{
@@ -51,8 +50,7 @@ export function HeroCarousel() {
                             scale: {duration: 4.5, ease: "linear"},
                         }}
                         fill
-                        loader={uploadthingLoader}
-                        className="absolute inset-0 w-full h-[115%] object-cover object-center"
+                        className="absolute inset-0 w-full h-full object-cover object-center"
                     />
                 </AnimatePresence>
                 <div className="absolute inset-0 bg-gradient-to-b from-accent/55 via-accent/20 to-accent"/>
@@ -63,7 +61,7 @@ export function HeroCarousel() {
 
             <motion.div
                 style={{y: textY, opacity}}
-                className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6 lg:px-20 max-w-[1440px] mx-auto pt-12"
+                className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6 lg:px-20 max-w-6xl w-full mx-auto pt-12"
             >
                 <motion.div
                     initial={{opacity: 0, x: -30}}
@@ -82,7 +80,7 @@ export function HeroCarousel() {
                         initial={{y: 80, opacity: 0}}
                         animate={{y: 0, opacity: 1}}
                         transition={{duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1]}}
-                        className="font-serif text-white leading-[0.92] tracking-tight text-6xl"
+                        className="font-serif text-white leading-[0.92] tracking-tight text-5xl lg:text-6xl"
 
                     >
                         Discover
@@ -93,7 +91,7 @@ export function HeroCarousel() {
                         initial={{y: 80, opacity: 0}}
                         animate={{y: 0, opacity: 1}}
                         transition={{duration: 1, delay: 0.52, ease: [0.22, 1, 0.36, 1]}}
-                        className="font-serif italic text-gold leading-[0.92] tracking-tight text-6xl"
+                        className="font-serif italic text-gold leading-[0.92] tracking-tight text-5xl lg:text-6xl"
 
                     >
                         Sri Lanka
@@ -104,7 +102,7 @@ export function HeroCarousel() {
                         initial={{y: 80, opacity: 0}}
                         animate={{y: 0, opacity: 1}}
                         transition={{duration: 1, delay: 0.64, ease: [0.22, 1, 0.36, 1]}}
-                        className="font-serif text-white leading-[0.92] tracking-tight text-6xl"
+                        className="font-serif text-white leading-[0.92] tracking-tight text-5xl lg:text-6xl"
 
                     >
                         Your Way

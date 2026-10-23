@@ -3,7 +3,6 @@
 import Image from "next/image";
 import {motion} from "motion/react";
 import {GalleryItemData} from "@/features/gallery/services/gallery.service.public";
-import {uploadthingLoader} from "@/features/gallery/utils/uploadthing-loader";
 
 export function GallerySection({gallery}: { gallery: GalleryItemData[] }) {
     return (
@@ -46,7 +45,6 @@ export function GallerySection({gallery}: { gallery: GalleryItemData[] }) {
                                         src={image.image.url}
                                         alt={image.caption || 'Gallery image'}
                                         fill
-                                        loader={uploadthingLoader}
                                         sizes="(min-width: 768px) 25vw, 50vw"
                                         className="object-cover"
                                     />

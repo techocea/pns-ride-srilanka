@@ -3,7 +3,6 @@
 import Image from "next/image";
 import {motion} from "motion/react";
 import {InquiryButton} from "@/features/inquiries/components/public/InquiryButton";
-import {uploadthingLoader} from "@/features/gallery/utils/uploadthing-loader";
 
 export default function ContactSection() {
     return (
@@ -38,7 +37,7 @@ export default function ContactSection() {
                             whileInView={{opacity: 1}}
                             viewport={{once: true}}
                             transition={{delay: 0.2}}
-                            className="text-muted-foreground font-sans text-base leading-relaxed max-w-md mb-10"
+                            className="text-muted-foreground text-base leading-relaxed max-w-md mb-10"
                         >
                             Every great journey begins with a conversation. Share your vision
                             — destinations, pace, interests — and our specialists will craft
@@ -50,6 +49,7 @@ export default function ContactSection() {
                             viewport={{once: true}}
                             transition={{delay: 0.3}}
                             whileHover={{x: 4}}
+                            className="max-sm:flex max-sm:justify-center max-sm:w-full"
                         >
                             <InquiryButton size="lg" label="Send an enquiry" />
                         </motion.div>
@@ -64,10 +64,9 @@ export default function ContactSection() {
                     >
                         <div className="relative overflow-hidden bg-surface aspect-[4/3]">
                             <Image
-                                src="https://g4518yf2e3.ufs.sh/f/iz1TLKwtTZx3zJYd1k0xkSnDcbNQhqF4Xt29PJH3LZm6WovU"
+                                src="/benthota.jpg"
                                 alt="Ceylon highlands in morning mist"
                                 fill
-                                loader={uploadthingLoader}
                                 sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                                 className="w-full h-full object-cover"
                             />

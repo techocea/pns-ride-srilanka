@@ -2,7 +2,14 @@ import {Compass, MapPin, MessageCircle, type LucideIcon} from 'lucide-react'
 
 export const aboutContent = {
     eyebrow: 'About Us',
-    lead: 'PNS Ride Sri Lanka helps travellers discover the beauty of Sri Lanka through memorable journeys, scenic routes, and visits to the island’s most popular tourist destinations. From golden beaches and historic landmarks to lush tea plantations and breathtaking mountain landscapes, we help you explore Sri Lanka at your own pace.',
+    lead: 'PNS Ride Sri Lanka helps travellers discover the beauty of Sri Lanka through memorable journeys, scenic routes, and visits to the island’s most popular tourist destinations.',
+
+    teaser: {
+        eyebrow: 'About Us',
+        title: 'Your Trusted Private Travel & Transport Partner in Sri Lanka',
+        text: 'PNS Ride Sri Lanka provides reliable private drivers, customized island tours, and seamless travel transfers across Sri Lanka. We combine local expertise with personal service so you can relax and experience the island’s finest sights with complete peace of mind.',
+        linkLabel: 'Read our story',
+    },
 
     story: {
         eyebrow: 'Our Story',

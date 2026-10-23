@@ -10,7 +10,6 @@ import {
 import Image from "next/image";
 import {TourRowActions} from "./TourRowActions";
 import {Button} from "@/components/ui/button";
-import {uploadthingLoader} from "@/features/gallery/utils/uploadthing-loader";
 
 const cols = 'grid grid-cols-[2fr_1fr_1fr_1fr_1fr_1fr] items-center gap-4 px-6'
 
@@ -44,7 +43,7 @@ export default function TourList({tours}: { tours: Tour[] }) {
                         <TableCell className={`${cols} h-[78px] border-t border-line ${draft ? 'opacity-50' : ''}`}>
                             <div className="flex items-center gap-4">
                                 {src ? (
-                                    <Image src={src} alt={cover?.alt ?? tour.title} width={54} height={64} loader={uploadthingLoader}
+                                    <Image src={src} alt={cover?.alt ?? tour.title} width={54} height={64}
                                            className="h-[42px] w-[64px] object-cover"/>
                                 ) : (
                                     <div className="h-[42px] w-[54px] bg-surface"/>

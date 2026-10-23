@@ -12,6 +12,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return [
         { url: site.url },
         { url: `${site.url}/about` },
+        { url: `${site.url}/destinations` },
+        { url: `${site.url}/privacy` },
+        { url: `${site.url}/terms` },
         ...tours.map((t) => ({ url: `${site.url}/packages/${t.slug}`, lastModified: new Date(t.updatedAt) })),
     ]
 }

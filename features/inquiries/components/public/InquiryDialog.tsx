@@ -7,6 +7,7 @@ import {Check, ChevronDown} from "lucide-react";
 import {TRAVELER_OPTIONS} from "@/features/inquiries/constants";
 import {useInquiryForm} from "@/features/inquiries/hooks/useInquiryForm";
 import {Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle} from '@/components/ui/dialog'
+import Link from "next/link";
 
 type Props = {
     open: boolean;
@@ -88,7 +89,8 @@ export function InquiryDialog({open, onOpenChange, tourTitle, defaults}: Props) 
                                 <Input name="phone" type="tel" autoComplete="tel"
                                        placeholder="+94 77 000 0000"/>
                             </Field>
-                            <Field label="Preferred travel date" error={e.travelDate} className="col-span-2 md:col-span-1">
+                            <Field label="Preferred travel date" error={e.travelDate}
+                                   className="col-span-2 md:col-span-1">
                                 <Input name="travelDate" type="date"
                                        min={minDate}
                                        defaultValue={defaults?.travelDate ?? ''}
@@ -121,7 +123,11 @@ export function InquiryDialog({open, onOpenChange, tourTitle, defaults}: Props) 
                                 {pending ? 'Sending...' : 'Send enquiry'}
                             </Button>
 
-                            <span className="text-xs text-muted-foreground/60 col-span-2 text-center">We respond within 24 hours · No spam · Completely confidential</span>
+                            <p className="text-xs col-span-2 text-center text-muted-foreground">
+                                By sending, you agree to our&nbsp;
+                                <Link href="/privacy" target="_blank" className="text-gold underline">Privacy
+                                    Policy</Link>.
+                            </p>
                         </div>
                     </form>
                 )}

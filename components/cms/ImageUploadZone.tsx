@@ -46,8 +46,8 @@ export function ImageUploadZone({name, initialImages, maxFiles = IMAGE_RULES.max
             >
                 <UploadCloud size={24} className="mx-auto mb-3 text-gold"/>
                 <p className="text-sm text-white">Drag &amp; drop images</p>
-                <p className="mb-4 mt-2 text-xs text-muted">
-                    JPG, PNG, WebP · 16 MB each · up to {maxFiles} images
+                <p className="mb-4 mt-2 text-xs text-muted-foreground">
+                    JPG, PNG, WebP · 4 MB each · up to {maxFiles} images
                 </p>
                 <Button size={"sm"} type="button" variant="outline" onClick={() => browseRef.current?.click()}>
                     Browse images
@@ -84,8 +84,7 @@ export function ImageUploadZone({name, initialImages, maxFiles = IMAGE_RULES.max
                                 src={item.src}
                                 alt={`Image ${index + 1}`}
                                 fill
-                                unoptimized
-                                loading={"eager"}
+                                loading={"lazy"}
                                 sizes="(min-width: 640px) 25vw, 50vw"
                                 className={`object-cover ${item.status === 'uploading' ? 'opacity-40' : ''}`}
                             />

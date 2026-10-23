@@ -2,7 +2,7 @@
 
 import {useEffect, useState} from 'react'
 import type {Traveler} from '../constants'
-import {buildWhatsAppUrl} from '../utils/whatsapp'
+import {buildWhatsAppUrlCustomer} from '../utils/whatsapp'
 
 type Args = { tourTitle: string; whatsappNumber?: string }
 
@@ -23,7 +23,7 @@ export function useInquiryPanel({tourTitle, whatsappNumber}: Args) {
     }
 
     const whatsappUrl = whatsappNumber
-        ? buildWhatsAppUrl({number: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER as string, tourTitle, travelDate, travelers})
+        ? buildWhatsAppUrlCustomer({number: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER as string, tourTitle, travelDate, travelers})
         : null
 
     return {

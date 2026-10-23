@@ -2,9 +2,8 @@ import Link from 'next/link'
 import Image from "next/image";
 import {site} from '@/lib/site'
 import {NAV_LINKS} from "@/lib/constants";
-import {MobileMenu} from "@/components/landing/MobileMenu";
+import {MobileMenu} from "@/components/shared/MobileMenu";
 import {Button} from "@/components/ui/button";
-import {uploadthingLoader} from "@/features/gallery/utils/uploadthing-loader";
 import {InquiryButton} from "@/features/inquiries/components/public/InquiryButton";
 
 export function Header() {
@@ -17,7 +16,7 @@ export function Header() {
                     className="flex items-center gap-3 text-left"
                     aria-label="Return to PNS ride sri lanka home"
                 >
-                    <Image src="/logo.jpg" width={100} height={80} loader={uploadthingLoader} alt={site.description}/>
+                    <Image src="/logo.webp" width={100} height={80} alt={site.description}/>
                 </Link>
 
                 <nav aria-label="Main" className="hidden items-center gap-8 md:flex">
@@ -36,7 +35,7 @@ export function Header() {
                     <InquiryButton variant={"outline"} size="sm" label="Enquire Now" className="uppercase"/>
                 </div>
 
-                <MobileMenu links={NAV_LINKS}/>
+                <MobileMenu mode={"landing"} links={NAV_LINKS}/>
             </div>
         </header>
     )

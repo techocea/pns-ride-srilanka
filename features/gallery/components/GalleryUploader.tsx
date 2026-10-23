@@ -24,8 +24,8 @@ export function GalleryUploader() {
             )}
 
 
-            <div className="flex items-center justify-center">
-                <Button size={"lg"} type="submit" disabled={pending || busy} className="mt-4 uppercase">
+            <div className="flex items-center justify-center w-full">
+                <Button size={"lg"} type="submit" disabled={pending || busy} className="mt-4 uppercase w-full md:w-auto">
                     {pending ? 'Adding...' : busy ? 'Uploading images...' : 'Add to gallery'}
                 </Button>
             </div>

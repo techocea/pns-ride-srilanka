@@ -9,22 +9,22 @@ export default async function ToursPage() {
     const [{docs}, stats] = await Promise.all([getTours(), getTourStats()])
 
     return (
-        <div
-            className="mx-auto">
-            <div className="flex items-center justify-between mb-6">
-                <TitleHeader title={"Tour Package Management"} description={`${stats.total} packages total · ${stats.featured} featured`}/>
-                <Link href={"/cms/tours/new"}>
+        <>
+            <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <TitleHeader title={"Tour Package Management"}
+                             description={`${stats.total} packages total · ${stats.featured} featured`}/>
+                <Link href={"/cms/tours/new"} className="w-full sm:w-auto">
                     <Button
                         size={"default"}
-                        className="border-gold text-gold bg-transparent "
+                        className="w-full sm:w-auto border-gold text-gold bg-transparent "
                     >
-                        <Plus size={12}/> Add Package
+                        <Plus size={14}/> Add Package
                     </Button>
                 </Link>
             </div>
             <div className="border border-border overflow-x-auto">
                 <TourList tours={docs}/>
             </div>
-        </div>
+        </>
     )
 }

@@ -20,7 +20,7 @@ export function InquiryStatusSelect({ id, status }: { id: string; status: Inquir
                 value={value}
                 onChange={(e) => isInquiryStatus(e.target.value) && change(e.target.value)}
                 className={cn(
-                    'cursor-pointer appearance-none px-3 py-1 text-[10px] font-medium border border-primary uppercase tracking-[0.15em] outline-none [color-scheme:dark] focus-visible:ring-1 focus-visible:ring-gold',
+                    'cursor-pointer text-center appearance-none px-3 py-1 text-[10px] font-medium border border-primary uppercase tracking-[0.15em] outline-none [color-scheme:dark] focus-visible:ring-1 focus-visible:ring-gold',
                     styles[value],
                 )}
             >

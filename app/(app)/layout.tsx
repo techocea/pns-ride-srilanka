@@ -4,11 +4,13 @@ import "@/app/globals.css";
 import {site} from "@/lib/site";
 import {JsonLd} from "@/components/seo/JsonLd";
 import {organizationJsonLd} from "@/lib/seo";
-import {Header} from "@/components/landing/Header";
-import {Footer} from "@/components/landing/Footer";
+import {Header} from "@/components/shared/Header";
+import {Footer} from "@/components/shared/Footer";
 import {Analytics} from '@vercel/analytics/next';
-import {TourFilterProvider} from "@/components/landing/TourFilterProvider";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import {TourFilterProvider} from "@/features/tours/providers/TourFilterProvider";
+import {GoogleAnalytics} from "@next/third-parties/google";
+import {StickyCta} from "@/components/shared/StickyCta";
+import Link from "next/link";
 
 const cormorant = Cormorant({
     subsets: ['latin'],
@@ -37,19 +39,19 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
             className={`${manrope.variable} ${cormorant.variable} h-full antialiased`}
         >
         <body>
-        <a href="#main"
+        <Link href="/#main"
            className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:bg-gold focus:p-3 focus:text-black">
             Skip to content
-        </a>
+        </Link>
         <Header/>
         <TourFilterProvider>
-            <main id="main" className="bg-secondary">
-                {children}</main>
+            <main id="main" className="bg-secondary">{children}</main>
         </TourFilterProvider>
         <Footer/>
+        <StickyCta/>
         <JsonLd data={organizationJsonLd()}/>
         <Analytics/>
-        {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
+        {GA_ID && <GoogleAnalytics gaId={GA_ID}/>}
         </body>
         </html>
     );

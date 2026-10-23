@@ -10,7 +10,7 @@ export default function DashboardLayout({children}: { children: React.ReactNode 
     return (
         <div>
             <CmsHeader/>
-            <main className="px-14 py-10 mx-auto w-full"> {children}</main>
+            <main className="px-4 md:px-8 py-10 mx-auto w-full"> {children}</main>
         </div>
     )
 }

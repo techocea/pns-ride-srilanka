@@ -1,25 +1,20 @@
-"use client"
-
 import Link from 'next/link'
 import Image from "next/image";
-import {site} from '@/lib/site'
-import {motion} from 'motion/react';
+import {site} from '@/lib/site';
 import {FOOTER_LINKS} from "@/lib/constants";
-import {uploadthingLoader} from "@/features/gallery/utils/uploadthing-loader";
-import {InquiryButton} from "@/features/inquiries/components/public/InquiryButton";
 
 export function Footer() {
     return (
-        <footer className="bg-secondary border-t border-border">
-            <div className="max-w-6xl w-full mx-auto px-6 lg:px-12">
-                <div className="py-20 lg:py-24 grid md:grid-cols-[2fr_1fr_1fr_1fr] gap-12 border-b border-border">
+        <footer id="footer" className="bg-secondary border-t border-border">
+            <div className="max-w-6xl w-full mx-auto px-6 lg:px-12 py-20 lg:py-24">
+                <div className="grid md:grid-cols-[2fr_1fr_1fr_1fr] gap-12 border-b border-border pb-20">
                     <div className="space-y-4">
                         <Link
-                            href={"/"}
+                            href={"/public"}
                             className="flex items-center gap-3 text-left"
                             aria-label="Return to PNS ride sri lanka home"
                         >
-                            <Image src="/logo.jpg" width={100} height={80}  className="object-cover" loader={uploadthingLoader}
+                            <Image src="/logo.webp" width={100} height={80} className="object-cover"
                                    alt={site.description}/>
                         </Link>
                         <p className="text-muted-foreground text-sm leading-relaxed max-w-xs mb-8">
@@ -52,14 +47,11 @@ export function Footer() {
                                 "Grand Island Tours",
                                 "Private Charters",
                             ].map((item) => (
-                                <li key={item}>
-                                    <a
-                                        href="#packages"
-                                        className=" text-sm text-muted-foreground hover:text-white transition-colors duration-200"
-                                    >
-                                        {item}
-                                    </a>
-                                </li>
+                                <Link key={item} href="/packages"
+                                      className="block text-sm text-muted-foreground hover:text-white transition-colors duration-200"
+                                >
+                                    {item}
+                                </Link>
                             ))}
                         </ul>
                     </div>
@@ -78,14 +70,11 @@ export function Footer() {
                                 "Galle Fort",
                                 "Nuwara Eliya",
                             ].map((item) => (
-                                <li key={item}>
-                                    <a
-                                        href="#destinations"
-                                        className=" text-sm text-muted-foreground hover:text-white transition-colors duration-200"
-                                    >
-                                        {item}
-                                    </a>
-                                </li>
+                                <Link key={item} href="/destinations"
+                                      className="block text-sm text-muted-foreground hover:text-white transition-colors duration-200"
+                                >
+                                    {item}
+                                </Link>
                             ))}
                         </ul>
                     </div>
@@ -124,29 +113,14 @@ export function Footer() {
                     <p className=" text-[11px] text-muted tracking-wider">
                         &copy; {new Date().getFullYear()} {site.name} Travel & Experiences. All rights reserved.
                     </p>
-                    <div className="flex gap-6">
+                    <nav aria-label="Legal" className="flex gap-6">
                         {FOOTER_LINKS.slice(0, 2).map((l) => (
                             <Link key={l.href} href={l.href}
                                   className="text-[11px] hover:text-primary transition-colors duration-200">{l.label}</Link>
                         ))}
-                    </div>
+                    </nav>
                 </div>
             </div>
-
-            <motion.div
-                initial={{opacity: 0, y: 30}}
-                whileInView={{opacity: 1, y: 0}}
-                viewport={{once: true}}
-                className="border-t border-border py-14 bg-accent"
-            >
-                <div
-                    className="max-w-6xl w-full mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
-                    <p className="font-serif text-white text-xl lg:text-2xl text-center md:text-left">
-                        Ready to discover Ceylon&apos;s hidden wonders?
-                    </p>
-                    <InquiryButton size="lg" label="Plan my journey" className="uppercase" />
-                </div>
-            </motion.div>
         </footer>
     )
 }

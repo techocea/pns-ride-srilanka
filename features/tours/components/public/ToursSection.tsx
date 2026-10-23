@@ -5,9 +5,9 @@ import {TourCardData} from "@/features/tours/types";
 import {TOUR_TYPES} from "@/features/tours/schemas/tour.schema";
 import {ALL, filterTours} from "@/features/tours/utils/filter";
 import {TourCard} from "@/features/tours/components/public/TourCard";
-import {useTourFilters} from "@/components/landing/TourFilterProvider";
+import {useTourFilters} from "@/features/tours/providers/TourFilterProvider";
 import {Button} from "@/components/ui/button";
-import {TabBar} from "@/components/landing/TabBar";
+import {TabBar} from "@/components/shared/TabBar";
 
 export function ToursSection({tours}: { tours: TourCardData[] }) {
     const {type, destination, setFilters} = useTourFilters()

@@ -9,7 +9,7 @@ export function AboutValues() {
             <div className="mx-auto max-w-6xl w-full px-6 lg:px-12">
                 <Reveal className="mb-12 text-left">
                     <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.3em] text-gold">{values.eyebrow}</p>
-                    <h2 className="font-serif text-4xl sm:text-5xl">{values.title}</h2>
+                    <h2 className="font-serif text-2xl md:text-5xl">{values.title}</h2>
                 </Reveal>
 
                 <ul className="grid gap-2 bg-line md:grid-cols-3">

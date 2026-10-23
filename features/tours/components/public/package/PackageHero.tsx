@@ -4,7 +4,6 @@ import Image from 'next/image'
 import { motion } from 'motion/react'
 import type { TourDetailData } from '@/features/tours/types'
 import { Clock, MapPin, Users, type LucideIcon } from 'lucide-react'
-import {uploadthingLoader} from "@/features/gallery/utils/uploadthing-loader";
 
 export function PackageHero({ tour }: { tour: TourDetailData }) {
     const meta: { icon: LucideIcon; label: string }[] = [
@@ -22,7 +21,7 @@ export function PackageHero({ tour }: { tour: TourDetailData }) {
                 transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
             >
                 {tour.coverImage && (
-                    <Image src={tour.coverImage.url} alt={tour.coverImage.alt} fill loader={uploadthingLoader} sizes="100vw" className="object-cover" />
+                    <Image src={tour.coverImage.url} alt={tour.coverImage.alt} fill sizes="100vw" className="object-cover" />
                 )}
             </motion.div>
             <div className="absolute inset-0 bg-gradient-to-t from-accent via-accent/55 to-ink/25" />

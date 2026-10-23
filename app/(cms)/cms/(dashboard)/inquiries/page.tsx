@@ -6,6 +6,7 @@ import {inquiriesHref} from "@/features/inquiries/utils/cms-url";
 import InquiryList from "@/features/inquiries/components/InquiryList";
 import {InquiryFilters} from "@/components/cms/InquiryFilters";
 import {Pagination} from "@/components/cms/Pagination";
+import {BackButton} from "@/components/cms/BackButton";
 
 type Props = { searchParams: Promise<{ status?: string; page?: string }> }
 
@@ -20,13 +21,16 @@ export default async function InquiriesPage({searchParams}: Props) {
 
     return (
         <div
-            className="mx-auto">
-            <div className="flex items-center justify-between mb-6">
+            className="mx-auto space-y-8">
+            <div className="space-y-2">
+                <BackButton/>
                 <TitleHeader title={"Inquiry Management"}
                              description={`${counts.all} total · ${counts.new} new`}/>
             </div>
+
+            <InquiryFilters active={status} counts={counts}/>
+
             <div className="border border-border overflow-x-auto">
-                <InquiryFilters active={status} counts={counts}/>
 
                 <InquiryList docs={docs} emptyText={status ? `No ${status} enquiries.` : 'No enquiries yet.'}/>
 

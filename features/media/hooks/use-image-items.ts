@@ -14,7 +14,7 @@ export type ImageItem = {
 
 export const IMAGE_RULES = {
     maxFiles: 12,
-    maxBytes: 16 * 1024 * 1024,
+    maxBytes: 4 * 1024 * 1024,
     types: ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'],
 } as const
 
@@ -25,7 +25,12 @@ type Options = { initial?: ImageItem[]; maxFiles?: number }
 export function useImageItems({initial = [], maxFiles = IMAGE_RULES.maxFiles}: Options = {}) {
     const [items, setItems] = useState<ImageItem[]>(initial)
     const [error, setError] = useState('')
-    const {startUpload} = useUploadThing('cmsImage', {onUploadError: (e) => setError(e.message)})
+    const { startUpload } = useUploadThing('cmsImage', {
+        onUploadError: (e) => {
+            console.error('UploadThing error:', e.code, e.message, e.cause)
+            setError(e.message)
+        },
+    })
 
     const latest = useRef(items)
     useEffect(() => {

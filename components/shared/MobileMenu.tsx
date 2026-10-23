@@ -6,8 +6,14 @@ import {Menu, X} from 'lucide-react'
 import {Button} from "@/components/ui/button";
 import {AnimatePresence, motion, Variants} from "motion/react";
 import {InquiryButton} from "@/features/inquiries/components/public/InquiryButton";
+import {LogoutButton} from "@/components/cms/LogoutButton";
 
-type Props = { links: readonly { href: string; label: string }[] }
+type Props = {
+    mode: "cms" | "landing",
+    onClick?: () => void;
+    isPending?: boolean;
+    links: readonly { href: string; label: string }[]
+}
 
 const MotionLink = motion.create(Link);
 
@@ -16,7 +22,7 @@ const menuVariants: Variants = {
     open: {opacity: 1, y: 0, transition: {duration: 0.3, ease: 'easeOut'}},
 }
 
-export function MobileMenu({links}: Props) {
+export function MobileMenu({mode, links, isPending, onClick}: Props) {
     const [open, setOpen] = useState(false)
 
     useEffect(() => {
@@ -50,7 +56,7 @@ export function MobileMenu({links}: Props) {
                                 initial="closed"
                                 animate="open"
                                 exit="closed"
-                                className="fixed inset-0 z-40 flex h-dvh w-full z-40 bg-secondary flex flex-col pt-20 px-6">
+                                className="fixed inset-0 z-40 flex h-dvh w-full z-40 bg-secondary flex flex-col pt-16 px-6">
                         {links.map((l, i) => (
                             <MotionLink
                                 key={l.href}
@@ -66,8 +72,10 @@ export function MobileMenu({links}: Props) {
                                 {l.label}
                             </MotionLink>
                         ))}
-                        <div className="mt-12 w-full">
-                            <InquiryButton variant={"outline"} size="sm" label="Enquire Now" className="uppercase"/>
+                        <div className="mt-10 w-full flex justify-center">
+                            {mode === "landing" ? <InquiryButton variant={"outline"} size="sm" label="Enquire Now"
+                                                                 className="uppercase"/> :
+                                <LogoutButton isPending={isPending} onClick={onClick}/>}
                         </div>
                     </motion.div>
                 )}

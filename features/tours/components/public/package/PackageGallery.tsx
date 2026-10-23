@@ -7,7 +7,6 @@ import {ChevronLeft, ChevronRight} from 'lucide-react'
 import {useLightbox} from '@/features/tours/hooks/useLightBox'
 import type {PublicImage} from '@/features/media/utils/to-image'
 import {Dialog, DialogContent, DialogDescription, DialogTitle} from '@/components/ui/dialog'
-import {uploadthingLoader} from "@/features/gallery/utils/uploadthing-loader";
 
 type Props = { images: PublicImage[]; title: string }
 
@@ -52,7 +51,6 @@ export function PackageGallery({images, title}: Props) {
                                 src={image.url}
                                 alt={`${title} journey view ${index + 1}`}
                                 fill
-                                loader={uploadthingLoader}
                                 sizes="(min-width: 1024px) 25vw, 50vw"
                                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                             />
@@ -85,7 +83,6 @@ export function PackageGallery({images, title}: Props) {
                                 src={current.url}
                                 alt={`${title} journey view ${active + 1}`}
                                 fill
-                                loader={uploadthingLoader}
                                 sizes="90vw"
                                 className="object-contain"
                             />

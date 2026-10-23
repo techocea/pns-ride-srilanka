@@ -1,13 +1,13 @@
 import 'server-only'
 
-import { createUploadthing, type FileRouter } from 'uploadthing/next'
 import { UploadThingError } from 'uploadthing/server'
 import { getSession } from '@/features/auth/services/auth.service'
+import { createUploadthing, type FileRouter } from 'uploadthing/next'
 
 const f = createUploadthing()
 
 export const fileRouter = {
-    cmsImage: f({ image: { maxFileSize: '16MB', maxFileCount: 1 } })
+    cmsImage: f({ image: { maxFileSize: '4MB', maxFileCount: 12 } })
         .middleware(async () => {
             const user = await getSession()
             if (!user) throw new UploadThingError('Unauthorized')

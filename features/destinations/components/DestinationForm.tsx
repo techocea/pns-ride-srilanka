@@ -36,7 +36,7 @@ export function DestinationForm({destination}: { destination?: Destination }) {
     const parsed = parseHighlights(highlights)
 
     return (
-        <form onSubmit={handleSubmit} className="mx-auto grid max-w-2xl gap-6">
+        <form onSubmit={handleSubmit} className="mx-auto max-w-2xl space-y-8 w-full">
             {destination && <input type="hidden" name="id" value={destination.id}/>}
 
             <Field label="Title" error={e.title}>
@@ -90,7 +90,7 @@ export function DestinationForm({destination}: { destination?: Destination }) {
 
             {/* outside <Field>: a <label> would forward clicks to the first button */}
             <div className="grid gap-2">
-                <span className="text-[10px] uppercase tracking-[0.2em] text-muted">Cover image</span>
+                <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Cover image</span>
                 <ImageUploadZone
                     name="images"
                     maxFiles={1}
@@ -102,16 +102,18 @@ export function DestinationForm({destination}: { destination?: Destination }) {
 
             {state.error && <p className="text-sm text-red-400">{state.error}</p>}
 
-            <div className="flex gap-3">
-                <Button size="lg" type="submit" disabled={pending || busy} className="uppercase">
+            <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-2">
+                <Button size="lg" type="submit" disabled={pending || busy} className="w-auto uppercase">
                     {pending ? 'Saving...' : 'Save destination'}
                 </Button>
-                <Link
-                    href="/cms/destinations"
-                    className="border border-line px-8 py-3 text-xs uppercase tracking-[0.2em] text-muted hover:text-white"
+                <Button
+                    size={"lg"}
+                    variant={"outline"}
+                    className="uppercase w-auto"
                 >
-                    Cancel
-                </Link>
+                    <Link href="/cms/destinations"> Cancel
+                    </Link>
+                </Button>
             </div>
         </form>
     )

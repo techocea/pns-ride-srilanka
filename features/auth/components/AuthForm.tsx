@@ -20,7 +20,7 @@ export function AuthForm() {
                 </Field>
 
                 <Field label="Password" error={e.password}>
-                    <Input name="password" placeholder={"********"}/>
+                    <Input name="password" type={"password"} placeholder={"********"}/>
                 </Field>
 
                 {state.error && <p className="text-sm text-red-400">{state.error}</p>}

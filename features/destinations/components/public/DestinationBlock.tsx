@@ -5,7 +5,6 @@ import Image from "next/image"
 import {ArrowRight} from "lucide-react";
 import {motion, useScroll, useTransform} from "motion/react";
 import {DestinationCardData} from "@/features/destinations/types";
-import {uploadthingLoader} from "@/features/gallery/utils/uploadthing-loader";
 
 const MotionImage = motion.create(Image);
 
@@ -46,7 +45,6 @@ export function DestinationBlock({
                                 src={dest.image.url}
                                 alt={dest.image.alt}
                                 fill
-                                loader={uploadthingLoader}
                                 sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                                 className="w-full h-[115%] object-cover object-center"
                             />

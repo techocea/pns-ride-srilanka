@@ -11,7 +11,7 @@ export default function InquiryList({docs, emptyText}: { docs: InquiryRow[]; emp
     return <Table>
         <TableHeader>
             <TableRow>
-                <TableHead>Enquirer</TableHead>
+                <TableHead className="w-24 md:w-48">Enquirer</TableHead>
                 <TableHead>Package</TableHead>
                 <TableHead>Travel</TableHead>
                 <TableHead>Received</TableHead>
@@ -34,12 +34,12 @@ export default function InquiryList({docs, emptyText}: { docs: InquiryRow[]; emp
                         <TableRow key={i.id}>
                             <TableCell
                                 className={cn(cols, 'min-h-[84px] border-t border-line py-3', i.status === 'closed' && 'opacity-60')}>
-                                <div className="min-w-0">
-                                    <p className="flex items-center gap-2 font-serif text-lg leading-tight">
+                                <div className="min-w-24">
+                                    <p className="flex items-center gap-2 font-serif text-base md:text-lg leading-tight">
                                         {i.status === 'new' &&
                                             <span aria-label="New" className="size-1.5 shrink-0 rounded-full bg-gold"/>
                                         }
-                                        <span className="text-white">{i.name}</span>
+                                        <span className="text-white truncate">{i.name}</span>
                                     </p>
                                     <p className="mt-0.5 text-[11px] text-muted-foreground">{i.email}</p>
                                 </div>
@@ -57,7 +57,7 @@ export default function InquiryList({docs, emptyText}: { docs: InquiryRow[]; emp
                                     <p className="mt-0.5 text-[11px] text-muted-foreground">{formatTravelers(i.travelers)}</p>
                                 </div>
                             </TableCell>
-                            <TableCell>{formatReceived(i.createdAt)}</TableCell>
+                            <TableCell className="text-sm">{formatReceived(i.createdAt)}</TableCell>
                             <TableCell>
                                 <InquiryStatusSelect id={i.id} status={i.status}/>
                             </TableCell>

@@ -39,7 +39,7 @@ export function TourForm({destinations, tour}: Props) {
     const destinationItems = destinations.map((d) => ({label: d.title, value: d.id}))
 
     return (
-        <form action={formAction} className="mx-auto grid max-w-2xl gap-6">
+        <form action={formAction} className="mx-auto max-w-2xl space-y-8 w-full">
             {tour && <input type="hidden" name="id" value={tour.id}/>}
             {tour && <input type="hidden" name="existingCover" value={coverId}/>}
 
@@ -52,7 +52,7 @@ export function TourForm({destinations, tour}: Props) {
             </Field>
 
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Field label="Type" error={e.tourType}>
                     <Select
                         name="tourType"
@@ -96,7 +96,7 @@ export function TourForm({destinations, tour}: Props) {
                 </Field>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Field label="Duration (days)" error={e.durationDays}>
                     <Input name="durationDays" type="number" min={1} defaultValue={tour?.durationDays}
                     />
@@ -129,19 +129,19 @@ export function TourForm({destinations, tour}: Props) {
 
             <ItineraryEditor name="itinerary" initialRows={toItineraryRows(tour)} error={e.itinerary}/>
 
-            <div className="flex gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-2">
                 <Button
                     size={"lg"}
                     type="submit"
                     disabled={pending || busy}
-                    className="uppercase"
+                    className="uppercase w-auto"
                 >
                     {pending ? 'Saving...' : 'Save package'}
                 </Button>
                 <Button
                     size={"lg"}
                     variant={"outline"}
-                    className="uppercase"
+                    className="uppercase w-auto"
                 >
                     <Link href="/cms/tours"> Cancel
                     </Link>
