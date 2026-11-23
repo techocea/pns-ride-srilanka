@@ -6,8 +6,7 @@ import {absoluteUrl, site} from '@/lib/site'
 import {TOUR_TYPES} from "@/features/tours/schemas/tour.schema";
 import {tourJsonLd} from "@/features/tours/seo";
 import {PackageDetail} from "@/features/tours/components/public/package/PackageDetail";
-import {PRICE_CURRENCY} from "@/lib/constants";
-import {InquiryPanel} from "@/features/inquiries/components/public/InquiryPanel";
+
 
 export const revalidate = 3600
 
@@ -29,9 +28,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
     const title = `${tour.title} - ${tour.durationDays}-Day ${typeLabel(tour.typeLabel)} Tour`
     const description =
         tour.paragraphs.join(' ').slice(0, 155).trim() ||
-        `${tour.durationDays}-day ${tour.typeLabel.toLowerCase()} tour${
-            tour.destination ? ` in ${tour.destination.title}` : ''
-        }, from $${tour.price}. Enquire online.`
+        `${tour.durationDays}-day ${tour.typeLabel.toLowerCase()} tour${tour.destination}, from $${tour.price}. Enquire online.`
 
     return {
         title,
@@ -51,20 +48,11 @@ export default async function PackagePage({params}: Props) {
     const tour = await getTourBySlug(slug)
     if (!tour) notFound()
 
-
     return (
         <article>
             <JsonLd data={tourJsonLd(tour)}/>
             <PackageDetail
                 tour={tour}
-                booking={
-                    <InquiryPanel
-                        tourTitle={tour.title}
-                        price={tour.price}
-                        currency={PRICE_CURRENCY}
-                        whatsappNumber={site.contacts[0].description}
-                    />
-                }
             />
         </article>
     )

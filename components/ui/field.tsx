@@ -2,7 +2,7 @@ import React from "react";
 import {Label} from "@/components/ui/label";
 
 export const inputClass =
-    'w-full border border-line bg-surface px-4 py-3 text-sm outline-none placeholder:text-muted focus:border-gold'
+    'w-full border border-line bg-surface px-4 py-3 text-sm outline-none placeholder:text-muted-foreground focus:border-gold'
 
 export function Field({
                           label,

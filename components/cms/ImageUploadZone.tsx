@@ -5,21 +5,39 @@ import {Loader2, UploadCloud, X} from 'lucide-react'
 import {Button} from '@/components/ui/button'
 import Image from "next/image";
 import {IMAGE_RULES, useImageItems, type ImageItem} from '@/features/media/hooks/use-image-items'
+import {ImageEntry} from "@/features/media/schemas/media.schema";
 
 type Props = {
-    name: string
+    name?: string
     initialImages?: ImageItem[]
     maxFiles?: number
+    coverControls?: boolean
     onBusyChange?: (busy: boolean) => void
+    onEntriesChange?: (entries: ImageEntry[]) => void
 }
 
-export function ImageUploadZone({name, initialImages, maxFiles = IMAGE_RULES.maxFiles, onBusyChange}: Props) {
+export function ImageUploadZone({
+                                    name,
+                                    initialImages,
+                                    maxFiles = IMAGE_RULES.maxFiles,
+                                    onBusyChange,
+                                    onEntriesChange,
+                                    coverControls = true
+                                }: Props) {
     const {items, error, uploading, entries, add, remove, makeCover} = useImageItems({
         initial: initialImages,
         maxFiles,
     })
     const [dragging, setDragging] = useState(false)
     const browseRef = useRef<HTMLInputElement>(null)
+
+    const serialized = JSON.stringify(entries)
+
+    useEffect(() => {
+        onEntriesChange?.(entries)
+        // fires when the content changes, not on every parent render
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [serialized])
 
     useEffect(() => {
         onBusyChange?.(uploading)
@@ -67,7 +85,7 @@ export function ImageUploadZone({name, initialImages, maxFiles = IMAGE_RULES.max
                 />
 
                 {/* the only field submitted with the form: ordered list, first = cover */}
-                <input type="hidden" name={name} value={JSON.stringify(entries)}/>
+                {name && <input type="hidden" name={name} value={serialized}/>}
             </div>
 
             {error && (
@@ -84,6 +102,7 @@ export function ImageUploadZone({name, initialImages, maxFiles = IMAGE_RULES.max
                                 src={item.src}
                                 alt={`Image ${index + 1}`}
                                 fill
+                                unoptimized
                                 loading={"lazy"}
                                 sizes="(min-width: 640px) 25vw, 50vw"
                                 className={`object-cover ${item.status === 'uploading' ? 'opacity-40' : ''}`}
@@ -105,19 +124,20 @@ export function ImageUploadZone({name, initialImages, maxFiles = IMAGE_RULES.max
                             <X size={12}/>
                         </Button>
 
-                        {index === 0 ? (
-                            <p className="py-2 text-center text-[10px] uppercase tracking-[0.15em] text-gold">Cover
-                                image</p>
-                        ) : (
-                            <Button
-                                type="button"
-                                disabled={item.status === 'uploading'}
-                                onClick={() => makeCover(item.key)}
-                                className="w-full py-2 text-[10px] uppercase tracking-[0.15em] text-muted transition hover:text-gold disabled:opacity-40"
-                            >
-                                Use as cover
-                            </Button>
-                        )}
+                        {coverControls &&
+                            (index === 0 ? (
+                                <p className="py-2 text-center text-[10px] uppercase tracking-[0.15em] text-gold">Cover
+                                    image</p>
+                            ) : (
+                                <Button
+                                    type="button"
+                                    disabled={item.status === 'uploading'}
+                                    onClick={() => makeCover(item.key)}
+                                    className="w-full py-2 text-[10px] uppercase tracking-[0.15em] text-muted transition hover:text-gold disabled:opacity-40"
+                                >
+                                    Use as cover
+                                </Button>
+                            ))}
                     </div>
                 ))}
             </div>

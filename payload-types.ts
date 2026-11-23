@@ -203,7 +203,7 @@ export interface Tour {
    * Generated from the title
    */
   slug: string;
-  tourType: 'cultural' | 'nature' | 'adventure' | 'beach' | 'wildlife' | 'wellness';
+  tourType: 'guided' | 'romantic' | 'wildlife' | 'beach' | 'family' | 'luxury';
   status?: ('draft' | 'published') | null;
   featured?: boolean | null;
   destination: string | Destination;
@@ -211,7 +211,7 @@ export interface Tour {
   /**
    * Per person, USD
    */
-  price: number;
+  price?: number | null;
   maxGroupSize?: number | null;
   description: string;
   coverImage: string | Media;
@@ -223,6 +223,7 @@ export interface Tour {
     | null;
   itinerary?:
     | {
+        itineraryCover?: (string | null) | Media;
         title: string;
         details?: string | null;
         id?: string | null;
@@ -439,6 +440,7 @@ export interface ToursSelect<T extends boolean = true> {
   itinerary?:
     | T
     | {
+        itineraryCover?: T;
         title?: T;
         details?: T;
         id?: T;

@@ -4,7 +4,7 @@ import {HeroVideoSection} from "@/features/home/components/HeroVideoSection";
 
 export function Hero() {
     return (
-        <section className="relative w-full overflow-hidden bg-black">
+        <section className="relative -mt-24 w-full overflow-hidden bg-black">
             {site.heroVideo.mp4 ? <HeroVideoSection/> : <HeroCarousel/>}
         </section>
     )

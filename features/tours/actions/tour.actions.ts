@@ -38,21 +38,30 @@ export async function saveTourAction(_prev: AuthFormState, formData: FormData) {
         featured: formData.get('featured') === 'on',
     })
 
+    const cover = imageEntriesSchema.safeParse(readJson(formData.get('cover')))
+    const images = imageEntriesSchema.safeParse(readJson(formData.get('images')))
+
+
     const fieldErrors: Record<string, string> = {}
     if (!parsed.success) {
         for (const issue of parsed.error.issues) fieldErrors[String(issue.path[0])] ??= issue.message
         return {error: 'Please fix the highlighted fields', fieldErrors}
     }
 
-    const images = imageEntriesSchema.safeParse(JSON.parse(String(formData.get('images') || '[]')))
-    if (!images.success || images.data.length === 0) {
-        return {error: 'Please fix the highlighted fields', fieldErrors: {images: 'Add at least one image'}}
+    if (!cover.success || cover.data.length !== 1) fieldErrors.cover = 'Add one cover image'
+    if (!images.success) fieldErrors.images = 'Invalid images'
+    else if (images.data.length > 12) fieldErrors.images = 'Max 12 tour images'
+
+    if (!parsed.success || !cover.success || !images.success || Object.keys(fieldErrors).length > 0) {
+        console.warn('[tour] validation failed', fieldErrors) // so a silent failure shows up in the terminal
+        return { error: 'Please fix the highlighted fields', fieldErrors }
     }
 
     try {
         await saveTour({
             id: String(formData.get('id') ?? '') || undefined,
             input: parsed.data,
+            cover:cover.data,
             images: images.data,
         })
         // console.log("tour details:", tour);

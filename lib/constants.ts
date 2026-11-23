@@ -27,7 +27,7 @@ export const FOOTER_LINKS = [
     {href: '/terms', label: 'Terms and Conditions'},
     {href: '/about', label: 'About Us'},
     {href: '/#testimonials', label: 'Testimonials'},
-    {href: '/blogs', label: 'Blogs'},
+    // {href: '/blogs', label: 'Blogs'},
 ] as const
 
 export const HERO_SLIDES = [

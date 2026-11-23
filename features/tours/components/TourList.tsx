@@ -27,7 +27,6 @@ export default function TourList({tours}: { tours: Tour[] }) {
                 <TableHead className="w-10">Tour Package</TableHead>
                 <TableHead>Type</TableHead>
                 <TableHead>Duration</TableHead>
-                <TableHead>Price</TableHead>
                 <TableHead>Status</TableHead>
                 <TableHead>Actions</TableHead>
             </TableRow>
@@ -60,7 +59,6 @@ export default function TourList({tours}: { tours: Tour[] }) {
                             </Button>
                         </TableCell>
                         <TableCell>{tour.durationDays} days</TableCell>
-                        <TableCell>${tour.price.toLocaleString('en-US')}</TableCell>
                         <TableCell> <StatusBadge tour={tour}/></TableCell>
                         <TableCell> <TourRowActions id={String(tour.id)} title={tour.title}
                                                     draft={draft}/></TableCell>

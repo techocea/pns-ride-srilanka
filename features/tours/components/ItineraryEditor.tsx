@@ -1,13 +1,19 @@
 'use client'
 
-import React from "react";
+import React, {useEffect} from "react";
 import {Input} from '@/components/ui/input'
 import {Button} from '@/components/ui/button'
 import {inputClass} from '@/components/ui/field'
 import {ChevronDown, ChevronUp, Plus, Trash2} from 'lucide-react'
-import {type ItineraryRow, useItineraryRows} from "@/features/tours/hooks/useItineraryRows";
+import {InitialItineraryRow, useItineraryRows} from "@/features/tours/hooks/useItineraryRows";
+import {ImageUploadZone} from "@/components/cms/ImageUploadZone";
 
-type Props = { name: string; initialRows?: ItineraryRow[]; error?: string }
+type Props = {
+    name: string
+    initialRows?: InitialItineraryRow[]
+    error?: string
+    onBusyChange?: (busy: boolean) => void
+}
 
 function IconButton({
                         label,
@@ -33,8 +39,13 @@ function IconButton({
     )
 }
 
-export function ItineraryEditor({name, initialRows, error}: Props) {
-    const {rows, add, remove, update, move, serialized} = useItineraryRows(initialRows)
+export function ItineraryEditor({name, initialRows, error, onBusyChange}: Props) {
+    const {rows, add, remove, update, move, setCover, setUploading, busy, serialized} =
+        useItineraryRows(initialRows)
+
+    useEffect(() => {
+        onBusyChange?.(busy)
+    }, [busy, onBusyChange])
 
     return (
         <div className="grid gap-3">
@@ -70,7 +81,16 @@ export function ItineraryEditor({name, initialRows, error}: Props) {
                             </IconButton>
                         </div>
                     </div>
-
+                    <div className="grid gap-2">
+                        <span className="text-[10px] uppercase tracking-[0.2em] text-muted">Day photo</span>
+                        <ImageUploadZone
+                            maxFiles={1}
+                            initialImages={row.initialCover}
+                            coverControls={false}
+                            onEntriesChange={(entries) => setCover(row.key, entries)}
+                            onBusyChange={(isBusy) => setUploading(row.key, isBusy)}
+                        />
+                    </div>
                     <Input
                         value={row.title}
                         maxLength={80}

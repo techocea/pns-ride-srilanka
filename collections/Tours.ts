@@ -5,13 +5,13 @@ export const Tours: CollectionConfig = {
     slug: 'tours',
     admin: {
         useAsTitle: 'title',
-        defaultColumns: ['title', 'destination', 'duration', 'price', 'type', 'status']
+        defaultColumns: ['title', 'destinations', 'duration',  'type', 'status']
     },
     access: {
         read: () => true,
-        create: ({ req: { user } }) => Boolean(user),
-        update: ({ req: { user } }) => Boolean(user),
-        delete: ({ req: { user } }) => Boolean(user),
+        create: ({req: {user}}) => Boolean(user),
+        update: ({req: {user}}) => Boolean(user),
+        delete: ({req: {user}}) => Boolean(user),
     },
     fields: [
         {name: 'title', type: 'text', required: true},
@@ -26,7 +26,7 @@ export const Tours: CollectionConfig = {
                 readOnly: true,
                 description: 'Generated from the title',
             },
-            hooks: { beforeValidate: [autoSlug('title')] },
+            hooks: {beforeValidate: [autoSlug('title')]},
         },
         {
             name: 'tourType',
@@ -34,12 +34,12 @@ export const Tours: CollectionConfig = {
             required: true,
             defaultValue: 'cultural',
             options: [
-                {label: 'Cultural', value: 'cultural'},
-                {label: 'Nature', value: 'nature'},
-                {label: 'Adventure', value: 'adventure'},
-                {label: 'Beach', value: 'beach'},
-                {label: 'Wildlife', value: 'wildlife'},
-                {label: 'Wellness', value: 'wellness'},
+                {label: 'Private Guided Journey', value: 'guided'},
+                {label: 'Private Romantic Journey', value: 'romantic'},
+                {label: 'Private Wildlife Adventure', value: 'wildlife'},
+                {label: 'Private Coastal Journey', value: 'beach'},
+                {label: 'Private Family Journey', value: 'family'},
+                {label: 'Private Luxury Journey', value: 'luxury'},
             ],
         },
         {
@@ -58,7 +58,7 @@ export const Tours: CollectionConfig = {
             type: 'row',
             fields: [
                 {name: 'durationDays', type: 'number', required: true, min: 1},
-                {name: 'price', type: 'number', required: true, min: 0, admin: {description: 'Per person, USD'}},
+                {name: 'price', type: 'number', required: false, min: 0, admin: {description: 'Per person, USD'}},
                 {name: 'maxGroupSize', type: 'number'},
             ],
         },
@@ -74,6 +74,7 @@ export const Tours: CollectionConfig = {
             name: 'itinerary',
             type: 'array',
             fields: [
+                {name: 'itineraryCover', type: 'relationship', relationTo: 'media'},
                 {name: 'title', type: 'text', required: true},
                 {name: 'details', type: 'textarea'},
             ],

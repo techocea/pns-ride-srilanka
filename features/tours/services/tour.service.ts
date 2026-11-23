@@ -52,27 +52,44 @@ export async function removeTour(id: string) {
     await payload.delete({collection: 'tours', id, user, overrideAccess: false})
 }
 
-export async function saveTour({id, input, images}: SaveArgs) {
+export async function saveTour({id, input, cover, images}: SaveArgs) {
     const {payload, user} = await requireUser()
-    // const isId = (v: unknown) => typeof v === 'string' && /^[a-f0-9]{24}$/i.test(v)
+    const {itinerary, ...fields} = input
 
-    const ids = await resolveImageIds(images, input.title)
+    const coverIds = await resolveImageIds(cover, input.title)
+    const [coverImage] = coverIds
+    if (!coverImage) throw new Error('Add a cover image')
 
-    // console.log('SAVE DEBUG', {
-    //     destination: input.destination,
-    //     destinationOk: isId(input.destination),
-    //     mediaIds: ids,
-    //     mediaOk: ids.map(isId),
-    // })
+    const imageIds = await resolveImageIds(images, input.title)
 
-    const [coverImage, ...rest] = ids
+    const itineraryRows = []
+    for (const day of itinerary) {
+        const [itineraryCover] = day.cover
+            ? await resolveImageIds([day.cover], day.title)
+            : []
+        itineraryRows.push({
+            title: day.title,
+            details: day.details,
+            itineraryCover,
+        })
+    }
 
-    if (!coverImage) throw new Error('Cover image is required')
-
-    const data = {...input, coverImage, images: rest.map((image) => ({image}))}
+    const data = {
+        ...fields,
+        coverImage,
+        images: imageIds.map((image) => ({image})),
+        itinerary: itineraryRows,
+    }
 
     return id
         ? payload.update({collection: 'tours', id, data, user, overrideAccess: false})
-        : payload.create({draft: true, select: undefined, collection: 'tours', data, user, overrideAccess: false})
+        : payload.create({
+            draft: true,
+            select: undefined,
+            collection: 'tours',
+            data,
+            user,
+            overrideAccess: false,
+        })
 
 }

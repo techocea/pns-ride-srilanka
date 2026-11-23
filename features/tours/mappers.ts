@@ -13,7 +13,7 @@ export function toTourCard(t: Tour): TourCardData {
         description: t.description,
         destinationTitle: dest?.title ?? '',
         destinationSlug: dest?.slug ?? '',
-        price: t.price,
+        // price: t.price,
         durationDays: t.durationDays,
         tourType: t.tourType,
         featured: !!t.featured,
@@ -21,7 +21,7 @@ export function toTourCard(t: Tour): TourCardData {
     }
 }
 
-export function toTourDetail(t: Tour): TourDetailData {
+export function  toTourDetail(t: Tour): TourDetailData {
     const dest = typeof t.destination === 'object' ? t.destination : null
 
     return {
@@ -30,7 +30,7 @@ export function toTourDetail(t: Tour): TourDetailData {
         // tagline: t.tagline ?? null,
         typeLabel: TOUR_TYPES.find((x) => x.value === t.tourType)?.label ?? '',
         durationDays: t.durationDays,
-        price: t.price,
+        // price: t.price,
         maxGroupSize: t.maxGroupSize ?? null,
         destination: dest ? { title: dest.title, province: dest.province } : null,
         paragraphs: (t.description ?? '').split('\n').map((p) => p.trim()).filter(Boolean),
@@ -39,6 +39,10 @@ export function toTourDetail(t: Tour): TourDetailData {
             const img = toImage(row.image, t.title)
             return img ? [img] : []
         }),
-        itinerary: t.itinerary?.map((d) => ({ title: d.title, details: d.details ?? null })) ?? [],
+        itinerary: t.itinerary?.map((d) => ({
+            title: d.title,
+            details: d.details ?? null,
+            itineraryCover: toImage(d.itineraryCover, d.title),
+        })) ?? [],
     }
 }

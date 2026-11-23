@@ -45,7 +45,7 @@ export function InquiryDialog({open, onOpenChange, tourTitle, defaults}: Props) 
             <DialogContent className="max-h-[92svh] gap-0 overflow-y-auto bg-secondary px-4 py-8 md:p-8 sm:max-w-3xl">
                 <DialogHeader className="border-b border-border pb-6">
                     <DialogTitle
-                        className="text-primary text-2xl">{tourTitle ? 'Tailor this journey' : 'Plan your trip'}</DialogTitle>
+                        className="text-primary text-2xl">{tourTitle ? `Tailor this journey - ${tourTitle}` : 'Plan your trip'}</DialogTitle>
                     <DialogDescription className="text-white">Share your travel plans and we will reply by
                         email.</DialogDescription>
                 </DialogHeader>

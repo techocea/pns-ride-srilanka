@@ -2,22 +2,20 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import {useState} from "react";
-import {motion} from 'motion/react';
-import {ArrowUpRight} from "lucide-react";
+import React from "react";
+import {motion} from 'motion/react'
 import {Button} from "@/components/ui/button";
 import {TourCardData} from "@/features/tours/types";
-import {TOUR_TYPES} from "@/features/tours/schemas/tour.schema";
+import {InquiryButton} from "@/features/inquiries/components/public/InquiryButton";
+import {calcDurationNights} from "@/features/tours/utils/calc-duration";
 
 export function TourCard({tour}: { tour: TourCardData }) {
-    const [hovered, setHovered] = useState(false)
-
-    const typeLabel = TOUR_TYPES.find((t) => t.value === tour.tourType)?.label
+    const durationDays = tour.durationDays
+    const durationNights = calcDurationNights(durationDays);
 
     return (
-        <motion.article onHoverStart={() => setHovered(true)}
-                        onHoverEnd={() => setHovered(false)}
-                        className="group relative flex flex-col border border-border bg-canvas">
+        <motion.article
+            className="group relative flex flex-col border border-border bg-canvas">
             <Link href={`/packages/${tour.slug}`}>
                 <div className="relative aspect-video overflow-hidden bg-ink">
                     {tour.image && (
@@ -29,39 +27,33 @@ export function TourCard({tour}: { tour: TourCardData }) {
                             className="object-cover transition duration-500 group-hover:scale-105"
                         />
                     )}
-                    {typeLabel && (
-                        <span
-                            className="absolute left-3 top-3 bg-gold text-white px-3 py-1 text-[10px] uppercase tracking-[0.15em] text-gold">
-            {typeLabel}
-          </span>
-                    )}
-                </div>
-
-                <div className="flex flex-1 flex-col gap-2 p-5">
-                    <div className="flex flex-col gap-2 text-center">
-                        <h3 className="font-serif font-normal text-xl leading-tight">
-                            {tour.title}
-                        </h3>
-                        <p className="text-muted-foreground leading-6 text-sm">{tour.description}</p>
-                    </div>
-                    <hr className="my-4"/>
-                    <div className="mt-auto flex items-center justify-between text-sm">
-                        <p className="text-[11px] uppercase text-muted-foreground">From <br/>
-                            <span
-                                className="font-serif text-lg text-primary"> ${tour.price.toLocaleString('en-US')}</span>
-                        </p>
-                        <Button size={"sm"} variant="outline" className="uppercase">view itinerary</Button>
-                        <Button variant="default">
-                            <motion.span
-                                animate={{x: hovered ? [0, 4, 0] : 0}}
-                                transition={{duration: 1, repeat: hovered ? Infinity : 0}}
-                            >
-                                <ArrowUpRight size={17}/>
-                            </motion.span>
-                        </Button>
-                    </div>
                 </div>
             </Link>
+            <div className="flex flex-1 flex-col gap-2 p-5">
+                <div className="flex flex-col gap-2 text-left">
+                    <h3 className="font-serif font-normal text-xl leading-tight">
+                        {tour.title}
+                    </h3>
+                    <div className="flex items-center justify-between w-full">
+                        <p className="text-muted-foreground leading-6 capitalize text-sm">{durationDays} days
+                            / {durationNights}</p>
+                        <InquiryButton
+                            variant={"ghost"}
+                            label="get a quote"
+                            tourTitle={tour.title}
+                            className="font-semibold"
+                        />
+                    </div>
+                </div>
+
+                <div className="mt-4 flex items-center">
+                    <Button size={"lg"} variant="default" className="uppercase w-full">
+                        <Link href={`/packages/${tour.slug}`}>
+                            view itinerary
+                        </Link>
+                    </Button>
+                </div>
+            </div>
         </motion.article>
     )
 }
