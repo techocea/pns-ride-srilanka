@@ -23,6 +23,7 @@ export default buildConfig({
     secret: process.env.PAYLOAD_SECRET || "",
     db: mongooseAdapter({
         url: process.env.DATABASE_URL || "",
+        transactionOptions: false, // Prevents MongoServerError code 251 (NoSuchTransaction) in production
     }),
     typescript: {
         outputFile: path.resolve(dirname, 'payload-types.ts'),
