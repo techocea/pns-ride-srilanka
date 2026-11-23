@@ -22,7 +22,7 @@ export function Header() {
                         height={220}
                         alt={site.name}
                         priority
-                        quality={100}
+                        quality={75}
                         className="h-14 sm:h-20 w-auto object-contain"
                     />
                 </Link>

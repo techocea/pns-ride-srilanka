@@ -9,10 +9,11 @@ type Props = { heroId?: string; endId?: string; text?: string; label?: string }
 
 export function StickyCta({
                               heroId = 'hero',
+                              endId = 'footer',
                               text = 'Ready to plan your journey?',
                               label = 'Plan my journey',
                           }: Props) {
-    const visible = useStickyCta({heroId})
+    const visible = useStickyCta({heroId, endId})
 
     const reduceMotion = useReducedMotion()
 
@@ -25,7 +26,7 @@ export function StickyCta({
                     animate={{y: 0, opacity: 1}}
                     exit={reduceMotion ? {opacity: 0} : {y: 80, opacity: 0}}
                     transition={{duration: 0.3, ease: 'easeOut'}}
-                    className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-accent pb-[env(safe-area-inset-bottom)"
+                    className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-accent pb-[env(safe-area-inset-bottom)]"
                 >
                     <div className="mx-auto flex max-w-6xl items-center justify-between lg:gap-4 lg:p-6">
                         <p className="hidden font-serif text-2xl uppercase text-white md:block">{text}</p>

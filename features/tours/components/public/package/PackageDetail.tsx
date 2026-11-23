@@ -1,7 +1,6 @@
 'use client'
 
 import React from "react";
-import {cn} from '@/lib/utils'
 import {MotionConfig} from 'motion/react'
 import type {TourDetailData} from '@/features/tours/types'
 import {PackageHero} from "@/features/tours/components/public/package/PackageHero";

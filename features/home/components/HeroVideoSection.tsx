@@ -3,6 +3,7 @@ import {HeroVideo} from "@/components/ui/hero-video";
 import {InquiryButton} from "@/features/inquiries/components/public/InquiryButton";
 import {Button} from "@/components/ui/button";
 import { MapPinSearch} from "lucide-react";
+import Link from "next/link";
 
 export function HeroVideoSection() {
 
@@ -60,7 +61,9 @@ export function HeroVideoSection() {
                 <div
                     className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4">
                     <Button size={"lg"}>
-                        explore our tours <span><MapPinSearch/></span>
+                        <Link href={"/packages"} className="flex gap-2">
+                            explore our tours <span><MapPinSearch/></span>
+                        </Link>
                     </Button>
 
                     <InquiryButton

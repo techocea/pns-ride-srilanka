@@ -32,7 +32,7 @@ export function ToursSection({tours}: { tours: TourCardData[] }) {
                 </div>
 
                 <hr className="my-10"/>
-                <div className="my-10">
+                <div className="hidden my-10">
                     <TabBar label="Filter tours by type" tabs={tabs} value={type}
                             onChange={(v) => setFilters({type: v})}/>
                 </div>

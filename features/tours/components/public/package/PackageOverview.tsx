@@ -8,9 +8,19 @@ export function PackageOverview({tour}: { tour: TourDetailData }) {
 
     const durationDays = tour.durationDays
     const durationNights = calcDurationNights(durationDays);
+    const description = (
+        <div className="space-y-3">
+            {tour.paragraphs.map((p, i) => (
+                <p key={i} className="text-base leading-8 text-muted-foreground">
+                    {p}
+                </p>
+            ))}
+        </div>
+    );
 
     const rows = [
         {detail: "Duration", information: `${durationDays} Days / ${durationNights}`},
+        {detail: "Description", information: description},
         {detail: "Tour type", information: "Private guided journey"},
         {
             detail: "Price", information: <InquiryButton
@@ -57,7 +67,7 @@ export function PackageOverview({tour}: { tour: TourDetailData }) {
                             <td className="py-4 pr-6 text-sm sm:text-base text-gray-200 align-top">
                                 {item.detail}
                             </td>
-                            <td className="py-4 text-sm sm:text-base text-gray-200 align-top">
+                            <td className="py-4 text-sm sm:text-base text-muted-foreground align-top">
                                 {item.information}
                             </td>
                         </tr>
