@@ -101,7 +101,7 @@ export function DestinationBlock({
                     <div className="grid grid-cols-2 gap-px bg-border/90 border border-border mb-10">
                         {dest.highlights.map((fact) => (
                             <div key={fact} className="bg-accent px-4 py-3">
-                <span className="font-mono text-[10px] text-muted tracking-wide">
+                <span className="font-sans text-xs text-muted tracking-wide">
                   {fact}
                 </span>
                             </div>
@@ -109,7 +109,7 @@ export function DestinationBlock({
                     </div>
 
                     <motion.a
-                        href="#packages"
+                        href="packages"
                         whileHover={{x: 6}}
                         transition={{duration: 0.25}}
                         className="inline-flex items-center justify-center gap-3 text-gold font-mono text-xs tracking-[0.2em] uppercase group"
