@@ -28,8 +28,8 @@ export function StickyCta({
                     transition={{duration: 0.3, ease: 'easeOut'}}
                     className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-accent pb-[env(safe-area-inset-bottom)]"
                 >
-                    <div className="mx-auto flex max-w-6xl items-center justify-between lg:gap-4 lg:p-6">
-                        <p className="hidden font-serif text-2xl uppercase text-white md:block">{text}</p>
+                    <div className="mx-auto flex max-w-6xl items-center justify-between sm:pl-10 lg:gap-4 lg:p-6">
+                        <p className="hidden font-serif sm:text-xl lg:text-2xl uppercase text-white md:block">{text}</p>
                         <div className="grid grid-cols-2 w-full md:w-auto md:flex items-center md:gap-3">
                             <WhatsappButton/>
                             <InquiryButton
